@@ -1,29 +1,29 @@
 # Trek Planner
 
-### Project Structure
+## Project Structure
 
+```plaintext
 trek-planner/
 ├── backend/
-│   ├── app/
-│   │   ├── __init__.py
-│   │   ├── main.py        # FastAPI main file
-│   ├── requirements.txt   # Backend dependencies
+│   ├── app/__init__.py
+│   ├── app/main.py
+│   └── requirements.txt
 ├── frontend/
-│   ├── public/
-│   │   ├── index.html     # HTML template
-│   ├── src/
-│   │   ├── components/    # React components
-│   │   ├── App.js         # Main React component
-│   │   ├── index.js       # React entry point
-│   ├── package.json       # Frontend dependencies and scripts
-│   ├── README.md          # Frontend README
+│   ├── public/index.html
+│   ├── src/components/
+│   ├── src/App.js
+│   ├── src/index.js
+│   ├── package.json
+│   └── README.md
 ├── .gitignore
-├── README.md              # Project README
+└── README.md
+```
 
 
-### Technologies used
-    * HTML
-    * CSS
-    * Bootstrap
-    * React
-    * Python - FastApi
+## Technologies Used
+
+- HTML
+- CSS
+- Bootstrap
+- React
+- Python - FastApi
