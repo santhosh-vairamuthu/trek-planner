@@ -59,6 +59,14 @@ body {
   font-weight: 350;
 }
 
+.Header{
+  min-height: 8vh;
+  background-color: var(--static);
+  border-bottom: 0.01rem solid var(--accent-100);
+  color: var(--text-950);
+  font-weight: 500;
+}
+
 
 
 .Login {
