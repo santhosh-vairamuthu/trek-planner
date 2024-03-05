@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
 :root{
 
@@ -12,13 +13,8 @@
 --background-3: #809f60;
 --background-4: #66804d;
 
---primary-50: #f1fce9;
---primary-100: #e3f8d3;
---primary-200: #c7f1a7;
---primary-300: #abea7b;
---primary-400: #8fe34f;
---primary-500: #73dd22;
---primary-600: #5cb01c;
+--primary-1: #73dd22;
+--primary-2: #5cb01c;
 
 --secondary-50: #e9fafc;
 --secondary-100: #d3f5f8;
@@ -67,6 +63,62 @@ body {
   font-weight: 500;
 }
 
+.Header .trekTitle{
+  color: var(--text-950);
+  font-size: 1.2rem;
+  font-weight: semibold;
+  height: 1.5rem;
+}
+
+.Header .offcanvas.offcanvas-start{
+  width: 65% !important;
+  border: none;
+  background-color: var(--background-1);
+}
+
+.Header .navbarButton,
+.Header .navbarButton:hover,
+.Header .navbarButton:active,
+.Header .navbarButton:visited{
+  color: var(--text-950);
+  font-size: 1.8rem;
+  font-weight: 900;
+  background-color: transparent;
+  border: none;
+}
+
+.Header .offcanvas-body a{
+  color: var(--text-950);
+  font-size: 1rem;
+  font-weight: 520;
+  height: 1.5rem;
+}
+
+.Header .cancelButton,
+.Header .cancelButton:hover,
+.Header .cancelButton:active,
+.Header .cancelButton:visited{
+  color: var(--text-950);
+  font-size: 1.5rem;
+  font-weight: 900;
+  background-color: transparent;
+  border: none;
+  background-color: var(--static);
+}
+
+
+.Header .signIn.btn{
+  background-color: var(--secondary-500);
+  border: none;
+  color: var(--background-1);
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.Header .signIn.btn:hover,
+.Header .signIn.btn:focus{
+  background-color: var(--secondary-600);
+}
 
 
 .Login {
@@ -93,7 +145,7 @@ body {
 
 .Login  h3{
   text-align: center;
-  color: var(--accent-600);
+  color: var(--accent-500);
 }
 
 
@@ -104,7 +156,7 @@ body {
 .Login .switch{
   font-size: 0.9rem;
   background-color: transparent;
-  color: var(--accent-500);
+  color: var(--secondary-600);
   border: none;
 }
 
