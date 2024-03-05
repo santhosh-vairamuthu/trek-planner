@@ -11,7 +11,7 @@ const Header = () => {
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a className="navbar-brand  align-items-center" href="#">
                     <img src={logo} width="30" height="30" className="d-inline-block align-top"alt="Logo"/>
-                    <span> Trek Planner</span>
+                    <span className='trekTitle'> Trek Planner</span>
                 </a>
                 <button className="navbar-toggler bi bi-list navbarButton " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"onClick={() => setShowNav(!showNav)}>
                     
@@ -44,7 +44,7 @@ const Header = () => {
                 <div className="collapse navbar-collapse justify-content-lg-end " id="navbarSupportedContent">
                     <ul className="navbar-nav mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <button className="btn btn-primary" >Sign in</button>
+                            <button className="btn btn-lg signIn" >Sign in</button>
                         </li>
                     </ul>
                 </div>
