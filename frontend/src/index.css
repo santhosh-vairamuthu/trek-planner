@@ -8,7 +8,7 @@
 
 --static: rgba(0, 0, 0, 0.03);
 
---background-1: #fdfdfd;
+--background-1: #ffffff;
 --background-2: #b3c69f;
 --background-3: #809f60;
 --background-4: #66804d;
@@ -192,4 +192,49 @@ body {
   cursor: pointer;
   border: none;
   outline: none;
+}
+
+.Home .banner {
+  min-height: 80vh;
+  position: relative; 
+}
+
+.Home .banner::before {
+  border-radius: 50px;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url("./assets/banner.jpeg");
+  background-size: cover;
+  filter: brightness(80%);
+  z-index: -1; 
+}
+
+
+.Home .bannerTitle {
+  font-size: 12vh;
+  font-weight: 900;
+}
+
+.Home .bannerDescription {
+  font-size: 2vh;
+  font-weight: 500;
+  color: var(--background-1);
+}
+
+.Home .bannerButton.btn{
+  border-radius: 45px;
+  background-color: var(--background-1);
+  transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.Home .bannerButton.btn:hover,
+.Home .bannerButton.btn:active,
+.Home .bannerButton.btn:visited{
+  border-radius: 45px;
+  background-color: var(--accent-100);
+  transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
