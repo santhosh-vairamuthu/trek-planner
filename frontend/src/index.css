@@ -195,8 +195,7 @@ body {
 }
 
 .Home .banner {
-  min-height: 80vh;
-  position: relative; 
+  position: relative;
 }
 
 .Home .banner::before {
@@ -210,12 +209,12 @@ body {
   background-image: url("./assets/banner.jpeg");
   background-size: cover;
   filter: brightness(80%);
-  z-index: -1; 
+  z-index: -1;
 }
 
 
 .Home .bannerTitle {
-  font-size: 12vh;
+  font-size: 3rem;
   font-weight: 900;
 }
 
