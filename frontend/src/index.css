@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+:root{
+
+
+--text-950: #0c100a;
+
+--static: rgba(0, 0, 0, 0.03);
+
+--background-1: #ffffff;
+--background-2: #b3c69f;
+--background-3: #809f60;
+--background-4: #66804d;
+
+--primary-1: #73dd22;
+--primary-2: #5cb01c;
+
+--secondary-50: #e9fafc;
+--secondary-100: #d3f5f8;
+--secondary-200: #a7ebf1;
+--secondary-300: #7be1ea;
+--secondary-400: #4fd7e3;
+--secondary-500: #22cddd;
+--secondary-600: #1ca4b0;
+
+--accent-50: #e9f0fc;
+--accent-100: #d3e2f8;
+--accent-200: #a7c5f1;
+--accent-300: #7ba7ea;
+--accent-400: #4f8ae3;
+--accent-500: #226ddd;
+--accent-600: #1c57b0;
+
+}
+
+
+html, body {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+body {
+  margin: 0;
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-1);
+  font-weight: 350;
+}
+
+.Header{
+  min-height: 8vh;
+  background-color: var(--static);
+  border-bottom: 0.01rem solid var(--accent-100);
+  color: var(--text-950);
+  font-weight: 500;
+}
+
+.Header .trekTitle{
+  color: var(--text-950);
+  font-size: 1.2rem;
+  font-weight: semibold;
+  height: 1.5rem;
+}
+
+.Header .offcanvas.offcanvas-start{
+  width: 65% !important;
+  border: none;
+  background-color: var(--background-1);
+}
+
+.Header .navbarButton,
+.Header .navbarButton:hover,
+.Header .navbarButton:active,
+.Header .navbarButton:visited{
+  color: var(--text-950);
+  font-size: 1.8rem;
+  font-weight: 900;
+  background-color: transparent;
+  border: none;
+}
+
+.Header .offcanvas-body a{
+  color: var(--text-950);
+  font-size: 1rem;
+  font-weight: 500;
+  height: 1.5rem;
+}
+
+.Header .cancelButton,
+.Header .cancelButton:hover,
+.Header .cancelButton:active,
+.Header .cancelButton:visited{
+  color: var(--text-950);
+  font-size: 1.5rem;
+  font-weight: 900;
+  background-color: transparent;
+  border: none;
+  background-color: var(--static);
+}
+
+
+.Header .signIn.btn{
+  background-color: var(--secondary-500);
+  border: none;
+  color: var(--background-1);
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.Header .signIn.btn:hover,
+.Header .signIn.btn:focus{
+  background-color: var(--secondary-600);
+}
+
+.Footer{
+  margin-top: auto;
+  background-color: var(--static);
+  text-align: center;
+  min-height: 15vh;
+}
+
+
+.Login {
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  gap: 10px;
+  padding-bottom: 0.4em;
+  border-radius: 25px;
+  background-color: var(--static);
+  border: solid 1px var(--secondary-600);
+  
+}
+
+.Login .form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Login .form label{
+  color: var(--accent-300);
+}
+
+.Login  h3{
+  text-align: center;
+  color: var(--accent-500);
+}
+
+
+.Login  h5{
+  font-size: 0.9rem;
+}
+
+.Login .switch{
+  font-size: 0.9rem;
+  background-color: transparent;
+  color: var(--secondary-600);
+  border: none;
+}
+
+.Login input[type="text"],
+.Login input[type="email"],
+.Login input[type="password"]{
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+
+.Login .btn{
+  background-color: var(--secondary-400);
+  color: var(--background-1);
+  cursor: pointer;
+  border: none;
+}
+
+.Login .btn:hover,
+.Login .btn:active,
+.Login .btn:visited{
+  background-color: var(--secondary-600);
+  color: var(--background-1);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.Home .banner {
+  position: relative;
+}
+
+.Home .banner::before {
+  border-radius: 50px;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url("./assets/banner.jpeg");
+  background-size: cover;
+  filter: brightness(80%);
+  z-index: -1;
+}
+
+
+.Home .bannerTitle {
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.Home .bannerDescription {
+  font-size: 2vh;
+  font-weight: 500;
+  color: var(--background-1);
+}
+
+.Home .bannerButton.btn{
+  border-radius: 45px;
+  background-color: var(--background-1);
+  transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.Home .bannerButton.btn:hover,
+.Home .bannerButton.btn:active,
+.Home .bannerButton.btn:visited{
+  border-radius: 45px;
+  background-color: var(--accent-100);
+  transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
