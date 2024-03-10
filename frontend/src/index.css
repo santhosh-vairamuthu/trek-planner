@@ -237,3 +237,11 @@ body {
   background-color: var(--accent-100);
   transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
+
+
+
+
+.Home .content-text {
+  background-color: var(--secondary-50);
+}
+
