@@ -1,6 +1,18 @@
 import requests
 
-# Function to get latitude and longitude of a city using OpenCage Geocoding API
+def get_category():
+    category = {
+        "Arts and Entertainment" : "10000",
+        "Landmarks and Outdoors" : "16000",
+        "Spiritual Center / Temple" : "12111",
+        "Museum" : "10027",
+        "Monument" : "16026",
+        "Historic and Protected Site" : "16020",
+        "Scenic Lookout, Nature view points" : "16046"
+
+    }
+
+    pass
 def get_lat_long(city_name, api_key):
     url = f"https://api.opencagedata.com/geocode/v1/json?q={city_name}&key={api_key}"
     response = requests.get(url)
@@ -22,8 +34,8 @@ def find_tourist_attractions(lat, lon):
 
     params = {
         "ll": f"{lat},{lon}",
-        "categories" : "10000,16000,12111,10027,16026,10030,16020,13354,16046",
-        "limit" : 20
+        "categories" : "16046,16000,10000,10027",
+        "limit" : 50
     }
 
     response = requests.get(url, headers=headers, params=params)
@@ -35,6 +47,7 @@ def find_tourist_attractions(lat, lon):
         attractions = []
         for result in results:
             attraction_details = {
+                "fsq_id" : result["fsq_id"],
                 "name": result["name"],
                 "category": result["categories"][0]["name"] if result["categories"] else None,
                 "distance": result["distance"],
