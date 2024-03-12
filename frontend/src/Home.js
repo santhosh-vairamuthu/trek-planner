@@ -2,6 +2,8 @@ import React from 'react';
 import image1 from "./assets/pic1.jpg"
 import image2 from "./assets/pic2.jpg"
 import image3 from "./assets/pic3.jpeg"
+import { Link } from "react-router-dom"
+
 const Home = () => {
     return (
         <div className="container Home">
@@ -9,7 +11,7 @@ const Home = () => {
                 <div className='container'>
                     <h1 className='bannerTitle text-white mb-2'>Craft Unforgettable Travel with Trek Planner</h1>
                     <p className='bannerDescription mt-2'>Your personalized digital companion for seamless trip planning, <br/>itinerary customization, and expert travel recommendations!</p>
-                    <button className='btn bannerButton px-5'>Get Started</button>
+                    <Link className='btn bannerButton px-5' to='/plan'>Get Started</Link>
                     <div className='container d-sm-none d-lg-block' style={{minHeight:"40vh"}}></div>
                 </div>
             </div>
