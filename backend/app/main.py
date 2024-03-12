@@ -10,13 +10,10 @@ from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 
 
 app = FastAPI()
-templates = Jinja2Templates(directory='templates')
-Base.metadata.create_all(bind=engine)
 
 
 origins = [
-    "http://localhost:3000",
-    "*",
+    "http://localhost:3000"
 ]
 
 app.add_middleware(

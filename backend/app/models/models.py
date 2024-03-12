@@ -12,9 +12,9 @@ Base.metadata.bind = engine
 class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False, index=True)
-    username = Column(String, nullable=False)
-    email = Column(String, nullable=False)
-    password = Column(String, nullable=False)
+    username = Column(String(100), nullable=False)
+    email = Column(String(100), nullable=False)
+    password = Column(String(100), nullable=False)
 
 
     created_at = Column(DateTime, nullable=False, default=func.now())
