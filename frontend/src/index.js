@@ -8,12 +8,37 @@ import Account from "./Account"
 import Planning from "./Planning"
 import Header from "./Header"
 import Footer from "./Footer"
+import Error from "./Error"
+import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+
+const router = createBrowserRouter([
+  {
+    path : '/',
+    element : <><Header/><Home/><Footer/></>,
+    errorElement : <Error/>
+  },
+  {
+    path : '/blogs',
+    element : <><Header/><Blogs/><Footer/></>
+  },
+  {
+    path : '/auth',
+    element : <Login/>
+  },
+  {
+    path : '/account',
+    element : <><Header/><Account/><Footer/></>
+  }
+  ,
+  {
+    path : '/plan',
+    element : <><Header/><Planning/><Footer/></>
+  }
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <>
-    <Header/>
-    <Account/>
-    <Footer/>
-  </>
+  <React.StrictMode>
+    <RouterProvider router={router}/>
+  </React.StrictMode>
 );

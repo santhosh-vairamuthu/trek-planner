@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+
 import pastImage from "./assets/pastEventImage.jpg";
-import ongoingImage from "./assets/ongoingEventImage.jpg";
-import upcomingImage from "./assets/upcomingEventImage.jpg";
+// import ongoingImage from "./assets/ongoingEventImage.jpg";
+// import upcomingImage from "./assets/upcomingEventImage.jpg";
 
 const Account = () => {
 

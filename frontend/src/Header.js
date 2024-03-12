@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import logo from "./assets/logo.png";
 
 const Header = () => {
@@ -8,11 +9,10 @@ const Header = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light  Header">
             <div className="container-fluid ">
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a className="navbar-brand  align-items-center" href="#">
+                <Link className="navbar-brand  align-items-center" to="/">
                     <img src={logo} width="30" height="30" className="d-inline-block align-top"alt="Logo"/>
                     <span className='trekTitle'> Trek Planner</span>
-                </a>
+                </Link>
                 <button className="navbar-toggler bi bi-list navbarButton " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"onClick={() => setShowNav(!showNav)}>
                     
                 </button>
@@ -23,20 +23,16 @@ const Header = () => {
                     <div className="offcanvas-body d-inline" >
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0 gap-4 justify-content-center ">
                             <li className="nav-item">
-                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                <a className="nav-link" href="#" onClick={() => setShowNav(false)}>Home</a>
+                                <Link className="nav-link" to="/" onClick={() => setShowNav(false)}>Home</Link>
                             </li>
                             <li className="nav-item">
-                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                <a className="nav-link" href="#" onClick={() => setShowNav(false)}>Blog</a>
+                                <Link className="nav-link" to="blogs" onClick={() => setShowNav(false)}>Blog</Link>
                             </li>
                             <li className="nav-item">
-                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                <a className="nav-link" href="#" onClick={() => setShowNav(false)}>Plan</a>
+                                <Link className="nav-link" to="/plan" onClick={() => setShowNav(false)}>Plan</Link>
                             </li>
                             <li className="nav-item">
-                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                <a className="nav-link" href="#" onClick={() => setShowNav(false)}>Account</a>
+                                <Link className="nav-link" to="/account" onClick={() => setShowNav(false)}>Account</Link>
                             </li>
                         </ul>
                     </div>
@@ -44,7 +40,7 @@ const Header = () => {
                 <div className="collapse navbar-collapse justify-content-lg-end " id="navbarSupportedContent">
                     <ul className="navbar-nav mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <button className="btn btn-lg signIn" >Sign in</button>
+                            <Link className="btn btn-lg signIn" to='/auth'>Sign in</Link>
                         </li>
                     </ul>
                 </div>

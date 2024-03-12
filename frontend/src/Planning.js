@@ -4,9 +4,7 @@ const Planning = () => {
     const [destination, setDestination] = useState('');
     const [travelDate, setTravelDate] = useState('');
     const [travelDuration, setTravelDuration] = useState(1);
-    const [budget, setBudget] = useState('');
-    const [travelWith, setTravelWith] = useState('');
-    const [activities, setActivities] = useState([]);
+    // const [activities, setActivities] = useState([]);
     const [selectedPlaces, setSelectedPlaces] = useState([]);
     const [autocompleteOptions, setAutocompleteOptions] = useState([]);
     const today = new Date().toISOString().split('T')[0];
@@ -21,9 +19,6 @@ const Planning = () => {
         "Scenic Lookout, Nature view points": "16046"
     };
 
-    const handleTravelWithClick = (option) => {
-        setTravelWith(option);
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,15 +32,15 @@ const Planning = () => {
         setTravelDuration(prevDuration => parseInt(prevDuration, 10) + 1);
     };
 
-    const handleStartTimeChange = (activityName, startTime) => {
-        const updatedActivities = activities.map(activity => {
-            if (activity.name === activityName) {
-                return { ...activity, startTime };
-            }
-            return activity;
-        });
-        setActivities(updatedActivities);
-    };
+    // const handleStartTimeChange = (activityName, startTime) => {
+    //     const updatedActivities = activities.map(activity => {
+    //         if (activity.name === activityName) {
+    //             return { ...activity, startTime };
+    //         }
+    //         return activity;
+    //     });
+    //     setActivities(updatedActivities);
+    // };
 
     const handlePlaceCheckboxChange = (placeName) => {
         if (selectedPlaces.includes(placeName)) {
