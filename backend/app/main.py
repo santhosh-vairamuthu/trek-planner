@@ -1,10 +1,12 @@
-from fastapi import FastAPI, Request, Depends,Form,HTTPException, Body
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
-from fastapi.staticfiles import StaticFiles
+from app.routes import router
 from sqlalchemy.orm import Session
-from database import engine, SessionLocal, get_db, Base
-import models
+from app.models import get_db, models
+from fastapi.staticfiles import StaticFiles
+from starlette.middleware.sessions import SessionMiddleware
+from datetime import datetime
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 
 
 app = FastAPI()
@@ -14,6 +16,7 @@ Base.metadata.create_all(bind=engine)
 
 origins = [
     "http://localhost:3000",
+    "*",
 ]
 
 app.add_middleware(
@@ -28,3 +31,5 @@ app.add_middleware(
 @app.get("/")
 async def main():
     return {"message": "Hello World"}
+
+app.include_router(router, prefix='')
