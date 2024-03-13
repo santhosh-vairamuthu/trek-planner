@@ -35,7 +35,7 @@ def find_tourist_attractions(lat, lon):
     params = {
         "ll": f"{lat},{lon}",
         "categories" : "16046,16000,10000,10027",
-        "limit" : 50
+        "limit" : 25
     }
 
     response = requests.get(url, headers=headers, params=params)
@@ -63,9 +63,9 @@ def find_tourist_attractions(lat, lon):
 
 
 # Main function
-def main():
+def getPlaceData(cityName):
     # Get user input for city name
-    city_name = input("Enter the name of the city: ")
+    city_name = cityName
 
     # OpenCage API key
     opencage_api_key = "5cbe467dfd36484d9b873589b7864a6a"
@@ -75,19 +75,16 @@ def main():
     lat, lon = get_lat_long(city_name, opencage_api_key)
 
     if lat is not None and lon is not None:
-        print(f"Latitude: {lat}, Longitude: {lon}")
+        # print(f"Latitude: {lat}, Longitude: {lon}")
 
         # Find tourist attractions using Foursquare API
-        attractions = find_tourist_attractions(lat, lon)
+        return find_tourist_attractions(lat, lon)
 
-        print("\nTourist Attractions in", city_name + ":")
-        for i, attraction in enumerate(attractions, 1):
-            print(f"{i}. {attraction}")
+        # print("\nTourist Attractions in", city_name + ":")
+        # for i, attraction in enumerate(attractions, 1):
+        #     print(f"{i}. {attraction}")
     else:
         print("Could not find the location of the city.")
-
-if __name__ == "__main__":
-    main()
 
 
 

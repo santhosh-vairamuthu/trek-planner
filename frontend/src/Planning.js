@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Planning = () => {
     const [destination, setDestination] = useState('');
@@ -56,7 +57,7 @@ const Planning = () => {
         const options = [];
         // Filter cities based on input
         if (input.length > 0) {
-            const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', /* Add more city names here */];
+            const cities = ['Chennai', 'Madurai', 'Cochin', 'Kovilpatti', 'Ooty', 'Kodaikanal', 'Coimbatore'];
             cities.forEach(city => {
                 if (city.toLowerCase().includes(input.toLowerCase())) {
                     options.push(city);
@@ -148,7 +149,7 @@ const Planning = () => {
                             <input type="time" className="form-control" id="start-time" onChange={(e) => handleStartTimeChange("Beaches", e.target.value)} />
                         </div> */}
                         <div className="mb-3 text-center"> 
-                            <button type="submit" className="btn btn-primary custom-submit-btn">Create Plan</button>
+                            <Link to='/placedata' state={{ city: destination }} className="btn btn-primary custom-submit-btn">Create Plan</Link>
                         </div>
                     </form>
                 </div>
