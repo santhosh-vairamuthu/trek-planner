@@ -244,3 +244,21 @@ body {
   background-color: var(--secondary-50);
 }
 
+.BlogData .blog-post {
+  background-color: var(--static);
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.BlogData .blog-post h2 {
+  color: var(--accent-500);
+}
+.BlogData .blog-post p {
+  color: var(--text-950);
+}
+.BlogData .place-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}

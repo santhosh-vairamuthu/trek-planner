@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+// eslint-disable-next-line
 import App from "./App"
 import Login from "./Login"
 import Blogs from "./Blogs"
+import BlogData from "./BlogData"
 import Home from "./Home"
 import Account from "./Account"
 import Planning from "./Planning"
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
   {
     path : '/plan',
     element : <><Header/><Planning/><Footer/></>
+  },
+  {
+    path : '/blogdata',
+    element : <><Header/><BlogData/><Footer/></>
   }
 ]);
 
