@@ -262,3 +262,18 @@ body {
   border-radius: 5px;
   margin-bottom: 10px;
 }
+
+.PlaceData .cardData{
+  border: none;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.PlaceData .cardData .card-header{
+  background-color: var(--accent-400);
+  border-color: var(--accent-400);
+}
+
+.PlaceData .cardData .card-body{
+  background-color: var(--static);
+  border-color: var(--static);
+}

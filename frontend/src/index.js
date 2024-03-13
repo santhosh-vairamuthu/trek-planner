@@ -6,6 +6,7 @@ import App from "./App"
 import Login from "./Login"
 import Blogs from "./Blogs"
 import BlogData from "./BlogData"
+import PlaceData from "./PlaceData"
 import Home from "./Home"
 import Account from "./Account"
 import Planning from "./Planning"
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path : '/blogdata',
     element : <><Header/><BlogData/><Footer/></>
+  },
+  {
+    path : '/placedata',
+    element : <><Header/><PlaceData/><Footer/></>
   }
 ]);
 
