@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
@@ -231,9 +232,49 @@ body {
 }
 
 .Home .bannerButton.btn:hover,
-.Home .bannerButton.btn:active,
-.Home .bannerButton.btn:visited{
+.Home .bannerButton.btn:active{
   border-radius: 45px;
   background-color: var(--accent-100);
   transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+
+
+
+.Home .content-text {
+  background-color: var(--secondary-50);
+}
+
+.BlogData .blog-post {
+  background-color: var(--static);
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.BlogData .blog-post h2 {
+  color: var(--accent-500);
+}
+.BlogData .blog-post p {
+  color: var(--text-950);
+}
+.BlogData .place-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.PlaceData .cardData{
+  border: none;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.PlaceData .cardData .card-header{
+  background-color: var(--accent-400);
+  border-color: var(--accent-400);
+}
+
+.PlaceData .cardData .card-body{
+  background-color: var(--static);
+  border-color: var(--static);
 }

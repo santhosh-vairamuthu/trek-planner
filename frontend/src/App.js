@@ -1,10 +1,10 @@
-import './App.css';
+import React from 'react'
+import axios from 'axios'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-    </div>
-  );
+    <div>App</div>
+  )
 }
 
-export default App;
+export default App
