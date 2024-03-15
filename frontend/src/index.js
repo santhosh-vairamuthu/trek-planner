@@ -9,6 +9,7 @@ import Blogs from "./Blogs"
 import BlogData from "./BlogData"
 import PlaceData from "./PlaceData"
 import Home from "./Home"
+import Suggestions from "./Suggestions"
 import Account from "./Account"
 import Planning from "./Planning"
 import Header from "./Header"
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path : '/placedata',
     element : <><Header/><PlaceData/><Footer/></>
+  },
+  {
+    path : '/explore',
+    element : <><Header/><Suggestions/><Footer/></>
   }
 ]);
 

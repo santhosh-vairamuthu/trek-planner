@@ -9,7 +9,6 @@ from sqlalchemy.orm import Session
 router = APIRouter()
 
 
-
 @router.post("/signup")
 def signup(user:schemas.User ,db:Session=Depends(get_db),):
     try:

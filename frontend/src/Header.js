@@ -29,6 +29,9 @@ const Header = () => {
                                 <Link className="nav-link" to="/blogs" onClick={() => setShowNav(false)}>Blog</Link>
                             </li>
                             <li className="nav-item">
+                                <Link className="nav-link" to="/explore" onClick={() => setShowNav(false)}>Explore</Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-link" to="/plan" onClick={() => setShowNav(false)}>Plan</Link>
                             </li>
                             <li className="nav-item">

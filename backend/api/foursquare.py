@@ -34,8 +34,8 @@ def find_tourist_attractions(lat, lon):
 
     params = {
         "ll": f"{lat},{lon}",
-        "categories" : "16046,16000,10000,10027",
-        "limit" : 25
+        "categories" : "16046,16000,10000,10027,16020,16046",
+        "limit" : 50
     }
 
     response = requests.get(url, headers=headers, params=params)
@@ -46,15 +46,46 @@ def find_tourist_attractions(lat, lon):
 
         attractions = []
         for result in results:
-            attraction_details = {
-                "fsq_id" : result["fsq_id"],
-                "name": result["name"],
-                "category": result["categories"][0]["name"] if result["categories"] else None,
-                "distance": result["distance"],
-                "latitude": result["geocodes"]["main"]["latitude"],
-                "longitude": result["geocodes"]["main"]["longitude"]
+            urlDetail = f"https://api.foursquare.com/v3/places/{result['fsq_id']}/tips"
+
+            headersDetail = {
+                "accept": "application/json",
+                "Authorization": "fsq30t26NIz0zbvZ+44dbg4RJePX+Tf7xawhjYXSiN8f7+Y="
             }
-            attractions.append(attraction_details)
+
+            responseData = requests.get(urlDetail, headers=headersDetail)
+
+            if responseData.status_code == 200:
+                tip_data = responseData.json()
+                tips = []
+
+                for tip in tip_data:
+                    tip_id = tip["id"]
+                    created_at = tip["created_at"]
+                    tip_text = tip["text"]
+
+                    tip_info = {
+                        "id": tip_id,
+                        "created_at": created_at,
+                        "text": tip_text
+                    }
+
+                    tips.append(tip_info)
+
+
+                attraction_details = {
+                    "fsq_id" : result["fsq_id"],
+                    "name": result["name"],
+                    "category": result["categories"][0]["name"] if result["categories"] else None,
+                    "latitude": result["geocodes"]["main"]["latitude"],
+                    "longitude": result["geocodes"]["main"]["longitude"],
+                    "review": tips,
+                }
+
+                attractions.append(attraction_details)
+            else:
+                continue
+
 
         return attractions
     else:

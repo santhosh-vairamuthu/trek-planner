@@ -36,7 +36,7 @@ const PlaceData = () => {
                                 </div>
                                 <div className="card-body text-center">
                                     <p className="">Category : {place.category}</p>
-                                    <p className="">Distance : {place.distance}</p>
+                                    <p className="">Distance : {place.name}</p>
                                 </div>
                             </div>
                         </div>
