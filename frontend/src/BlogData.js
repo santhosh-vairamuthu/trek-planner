@@ -1,4 +1,5 @@
 import React from 'react';
+import goa from './assets/goa.jpg'
 import goa1 from './assets/goa1.jpg'
 import goa2 from './assets/goa2.jpg'
 import goa3 from './assets/goa3.jpg'
@@ -6,35 +7,52 @@ import goa4 from './assets/goa4.jpg'
 
 const BlogData = () => {
     return (
-        <div className='container BlogData'>
-            <div className="container mt-3 p-5">
-                <div className="row">
-                    <div className="col-lg-8 offset-lg-2">
-                        <div className="blog-post">
-                            <img src={goa1} alt="Beaches of Goa" className="place-image img-fluid" />
-                            <h2>1. Calangute Beach</h2>
-                            <p>Known as the "Queen of Beaches," Calangute Beach is one of the most popular and bustling beaches in Goa. It offers a vibrant atmosphere, with plenty of water sports activities, beach shacks serving delicious seafood, and lively nightlife options.</p>
-                        </div>
-
-                        <div className="blog-post">
-                            <img src={goa2} alt="Beaches of Goa" className="place-image img-fluid" />
-                            <h2>2. Basilica of Bom Jesus</h2>
-                            <p>A UNESCO World Heritage Site, the Basilica of Bom Jesus is a magnificent example of Baroque architecture and houses the mortal remains of St. Francis Xavier. It is one of the oldest churches in Goa and a significant pilgrimage site for Catholics from around the world.</p>
-                        </div>
-
-                        <div className="blog-post">
-                            <img src={goa3} alt="Beaches of Goa" className="place-image img-fluid" />
-                            <h2>3. Dudhsagar Waterfalls</h2>
-                            <p>Located in the Bhagwan Mahavir Wildlife Sanctuary in the Western Ghats, Dudhsagar Waterfalls is a majestic cascade surrounded by lush greenery. It is one of the tallest waterfalls in India, and visitors can enjoy trekking, swimming, and photography in its scenic surroundings.</p>
-                        </div>
-
-                        <div className="blog-post">
-                            <img src={goa4} alt="Beaches of Goa" className="place-image img-fluid" />
-                            <h2>4. Old Goa (Velha Goa)</h2>
-                            <p>A historic district that was once the capital of Portuguese India, Old Goa is home to numerous churches, convents, and cathedrals dating back to the colonial era. Some notable attractions include the Se Cathedral, Church of St. Francis of Assisi, and Church of St. Cajetan, offering insights into Goa's rich cultural and architectural heritage.</p>
-                        </div>
+        <div className='container-fluid BlogData'>
+            <div className="container-fluid mt-3">
+                <div className="container" style={{ position: "relative" }}>
+                    <div className="container blogBannerData p-5">
+                        <h1 className="card-title  fs-1 fw-bold mt-3">5 Days trip to Madurai</h1>
+                        <button className='btn btn-light mt-5 p-2'>View Plan</button>
                     </div>
+                    <img src={goa4} className="blogBanner rounded-2" alt="" />
                 </div>
+                <div className='container mt-2 px-5'>
+                    <div className='container d-flex px-5 justify-content-between'>
+                        <h3 className='fs-2 fw-bolder '>Madurai</h3>
+                        <p className='fs-5 fw-light '>July 13, 2023 </p>
+                    </div>
+                    <div className='container mt-3 px-5'>
+                        <p className='fw-bolder fs-5 px-5 font-monospace' style={{lineHeight : "2.2rem"}}>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis ipsum atque similique sunt perferendis veniam laboriosam voluptas nam odit, nisi itaque quis perspiciatis quasi dolor vel maiores cum rerum eveniet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quos sequi tenetur ducimus nemo ullam repudiandae quisquam labore illo officia. Iure reiciendis aliquam laudantium modi odio quidem libero inventoreLorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis ipsum atque similique sunt perferendis veniam laboriosam voluptas nam odit, nisi itaque quis perspiciatis quasi dolor vel maiores cum rerum eveniet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quos sequi tenetur ducimus nemo ullam repudiandae quisquam labore illo officia. Iure reiciendis aliquam laudantium modi odio quidem libero inventoreLorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        </p>
+                        <hr/>
+                    </div>
+                    <div className='container mt-3 mb-3 px-5'>
+                        <h3 className='fw-bold fs-3 mt-3 mb-3'>Pics:</h3>
+                        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                            <div className="col">
+                            <img src={goa1} className="img-fluid rounded" />
+                            </div>
+                            <div className="col">
+                            <img src={goa2} className="img-fluid rounded" />
+                            </div>
+                            <div className="col">
+                            <img src={goa3} className="img-fluid rounded" />
+                            </div>
+                            <div className="col">
+                            <img src={goa4} className="img-fluid rounded" />
+                            </div>
+                            <div className="col">
+                            <img src={goa} className="img-fluid rounded"/>
+                            </div>
+                            <div className="col">
+                            <img src={goa1} className="img-fluid rounded"/>
+                            </div>
+                        </div>
+                        </div>
+
+                </div>
+
             </div>
         </div>
     );

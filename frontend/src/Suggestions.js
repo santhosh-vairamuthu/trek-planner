@@ -64,6 +64,25 @@ const Suggestions = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className='col'>
+                            <div className="card p-0 mt-2 mb-2" style={{ width: "20rem"}}>
+                                <img src={goa1} className="card-img-top card-img" alt="" />
+                                <div className="card-body p-3">
+                                    <h5 className="card-title fw-bolder">Marina Beach</h5>
+                                    <p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='col'>
+                            <div className="card p-0 mt-2 mb-2" style={{ width: "20rem"}}>
+                                <img src={goa1} className="card-img-top card-img" alt="" />
+                                <div className="card-body p-3">
+                                    <h5 className="card-title fw-bolder">Marina Beach</h5>
+                                    <p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                                </div>
+                            </div>
+                        </div>
+                        
                         
                         
                     </div>
@@ -72,6 +91,26 @@ const Suggestions = () => {
                     <h1 className='fw-bolder fs-3'>Trek planner's suggestions</h1>
                     <p className='fw-lighter fst-italic'> Refresh to see more</p>
                     <div className=' row row-cols-md-3 row-cols-sm-2 row-cols-lg-3'>
+                        <div className='col'>
+                            <div className="card p-0 mt-2 mb-2" style={{ width: "20rem", position: "relative" }}>
+                                <img src={goa} className="card-img-top card-img" alt="" />
+                                <button className="btn bi bi-bookmark-heart-fill saveButtonImage"></button>
+                                <div className="card-body p-3">
+                                    <h5 className="card-title fw-bolder">Goa</h5>
+                                    <p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='col'>
+                            <div className="card p-0 mt-2 mb-2" style={{ width: "20rem", position: "relative" }}>
+                                <img src={goa} className="card-img-top card-img" alt="" />
+                                <button className="btn bi bi-bookmark-heart-fill saveButtonImage"></button>
+                                <div className="card-body p-3">
+                                    <h5 className="card-title fw-bolder">Goa</h5>
+                                    <p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                                </div>
+                            </div>
+                        </div>
                         <div className='col'>
                             <div className="card p-0 mt-2 mb-2" style={{ width: "20rem", position: "relative" }}>
                                 <img src={goa} className="card-img-top card-img" alt="" />

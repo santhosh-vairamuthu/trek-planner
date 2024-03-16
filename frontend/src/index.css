@@ -268,6 +268,25 @@ body {
   margin-bottom: 10px;
 }
 
+.BlogData .blogBanner{
+  min-width: 90vw;
+  max-height: 50vh;
+  position: relative;
+  border-radius: 0%;
+  
+}
+
+.BlogData .blogBannerData{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1; 
+  font-size: 2rem;
+  color: var(--background-1);
+  text-align: center;
+}
+
 .PlaceData .cardData{
   border: none;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
