@@ -110,7 +110,7 @@ const Planning = () => {
                             <input type="date" id="travelDate" className="form-control" value={travelDate} onChange={(e) => setTravelDate(e.target.value)} min={today} />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="travelDuration" className="form-label"><strong>Enter the duration of your travel:</strong></label>
+                            <label htmlFor="travelDuration" className="form-label"><strong>Enter the days of your travel:</strong></label>
                             <div className="input-group">
                                 <button type="button" className="btn btn-primary custom-btn" onClick={handleDecreaseDays}>-</button>
                                 <input type="number" id="travelDuration" className="form-control" value={travelDuration} onChange={(e) => setTravelDuration(e.target.value)} style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} />
@@ -149,7 +149,7 @@ const Planning = () => {
                             <input type="time" className="form-control" id="start-time" onChange={(e) => handleStartTimeChange("Beaches", e.target.value)} />
                         </div> */}
                         <div className="mb-3 text-center"> 
-                            <Link to='/placedata' state={{ city: destination }} className="btn btn-primary custom-submit-btn">Create Plan</Link>
+                            <Link to='/placedata' state={{ city: destination, days : travelDuration }} className="btn btn-primary custom-submit-btn">Create Plan</Link>
                         </div>
                     </form>
                 </div>

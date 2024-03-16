@@ -35,7 +35,7 @@ def find_tourist_attractions(lat, lon):
     params = {
         "ll": f"{lat},{lon}",
         "categories" : "16046,16000,10000,10027,16020,16046",
-        "limit" : 50
+        "limit" : 25
     }
 
     response = requests.get(url, headers=headers, params=params)
@@ -53,7 +53,16 @@ def find_tourist_attractions(lat, lon):
                 "Authorization": "fsq30t26NIz0zbvZ+44dbg4RJePX+Tf7xawhjYXSiN8f7+Y="
             }
 
+
+            urlAddress = f"https://api.foursquare.com/v3/places/{result['fsq_id']}"
+
+            headersAddress = {
+                "accept": "application/json",
+                "Authorization": "fsq30t26NIz0zbvZ+44dbg4RJePX+Tf7xawhjYXSiN8f7+Y="
+}
+
             responseData = requests.get(urlDetail, headers=headersDetail)
+            responseAddress = requests.get(urlAddress, headers=headersAddress)
 
             if responseData.status_code == 200:
                 tip_data = responseData.json()
@@ -72,7 +81,11 @@ def find_tourist_attractions(lat, lon):
 
                     tips.append(tip_info)
 
+                # Retrieve formatted address from the location field
+                address = result["location"]["formatted_address"]
 
+                if len(tips) > 3:
+                    tips = tips[:3]
                 attraction_details = {
                     "fsq_id" : result["fsq_id"],
                     "name": result["name"],
@@ -80,11 +93,13 @@ def find_tourist_attractions(lat, lon):
                     "latitude": result["geocodes"]["main"]["latitude"],
                     "longitude": result["geocodes"]["main"]["longitude"],
                     "review": tips,
+                    "address": address,  # Correct the key name to "address"
                 }
 
                 attractions.append(attraction_details)
             else:
                 continue
+
 
 
         return attractions
