@@ -20,7 +20,7 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 const router = createBrowserRouter([
   {
     path : '/',
-    element : <><Header/><Home/><Footer/></>,
+    element : <><Home/><Footer/></>,
     errorElement : <Error/>
   },
   {

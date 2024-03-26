@@ -35,7 +35,7 @@ def find_tourist_attractions(lat, lon):
     params = {
         "ll": f"{lat},{lon}",
         "categories" : "16046,16000,10000,10027,16020,16046",
-        "limit" : 25
+        "limit" : 20
     }
 
     response = requests.get(url, headers=headers, params=params)

@@ -23,6 +23,7 @@ const SignupComponent = () => {
             const requestData = Object.fromEntries(formData.entries());
             const response = await auth_api_signup.post("", requestData);
             if (response.data.status === 'True') {
+                localStorage.setItem('token', response.data.access_token);
                 navigate("/")
             } else {
                 console.log("Signup failed!");
@@ -53,7 +54,9 @@ const LoginComponent = () => {
             const formData = new FormData(e.target);
             const requestData = Object.fromEntries(formData.entries());
             const response = await auth_api_login.post("", requestData);
+            console.log(response.data);
             if (response.data.status === 'True') {
+                localStorage.setItem('token', response.data.access_token);
                 navigate("/");
             } else {
                 console.log("Login failed!");
@@ -62,6 +65,7 @@ const LoginComponent = () => {
             console.error("Login Error:", error);
         }
     };
+    
     
 
     return (

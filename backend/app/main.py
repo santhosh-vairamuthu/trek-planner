@@ -24,9 +24,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.add_middleware(SessionMiddleware, secret_key="e8Lj5R$Zv@n8!sWm3P#q")
 
-@app.get("/")
-async def main():
-    return {"message": "Hello World"}
+
+
 
 app.include_router(router, prefix='')

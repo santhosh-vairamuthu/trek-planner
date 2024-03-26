@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import logo from "./assets/logo.png";
 
-const Header = () => {
+const Header = (props) => {
+    const [state, setState] = useState(props.status)
+
+    useEffect(()=>{
+        setState(()=>{return (props.status)})
+    },[props.status]);
 
     const [showNav, setShowNav] = useState(false);
 
@@ -40,13 +45,16 @@ const Header = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="collapse navbar-collapse justify-content-lg-end " id="navbarSupportedContent">
-                    <ul className="navbar-nav mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <Link className="btn btn-lg signIn" to='/auth'>Sign in</Link>
-                        </li>
-                    </ul>
-                </div>
+                {!state && (
+                    <div className="collapse navbar-collapse justify-content-lg-end" id="navbarSupportedContent">
+                        <ul className="navbar-nav mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <Link className="btn btn-lg signIn" to='/auth'>Sign in</Link>
+                            </li>
+                        </ul>
+                    </div>
+                )}
+
             </div>
         </nav>
     );
