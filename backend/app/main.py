@@ -7,18 +7,19 @@ from fastapi.staticfiles import StaticFiles
 from starlette.middleware.sessions import SessionMiddleware
 from datetime import datetime
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
-
+from jose import jwt, JWTError
 
 app = FastAPI()
 
 
 origins = [
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "http://localhost:3001"
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=['*'],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

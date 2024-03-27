@@ -7,6 +7,7 @@ import image3 from "./assets/pic3.jpeg"
 import { Link } from "react-router-dom"
 
 
+
 const Home = () => {
     const [state, setState] = useState(false);
 
@@ -15,15 +16,15 @@ const Home = () => {
         const verify = async () => {
             try {
             const sessionToken = localStorage.getItem('token');
+            console.log(sessionToken);
             if (sessionToken) {
                 const response = await axios.post('http://127.0.0.1:8000/verify_session',{},
                     {
                         headers: {
-                            Authorization: `Bearer ${sessionToken}`
+                            Authorization: `${sessionToken}`,
                         }
                     }
                 );
-                console.log('Session verification response:', response.data.status);
                 setState(()=>{return (response.data.status)})
             } else {
                 console.log('Session token not found');

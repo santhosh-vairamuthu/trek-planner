@@ -10,6 +10,7 @@ from app.configs.base_config import BaseConfig
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from app.resources.utils import create_access_token
 from datetime import  datetime,date, timedelta
+from jose import jwt, JWTError
 
 router = APIRouter()
 
@@ -46,10 +47,11 @@ def login(user:schemas.Login ,db:Session=Depends(get_db),):
         print(e)
         return JSONResponse({'status': 'False'})
     
+# TODO : complete this action
 @router.post("/verify_session")
-def verify_session(request: Request):
+async def verify_session(request: Request):
     try:
-        token = request.session.get("token")
+        token = request.headers.get("Authorization")
         if not token:
             raise HTTPException(status_code=401, detail="Unauthorized: User not logged in")
 
@@ -62,6 +64,7 @@ def verify_session(request: Request):
         
         if not username:
             raise HTTPException(status_code=401, detail="Unauthorized: Invalid user token")
+        
         return JSONResponse({'status': True})
 
     except HTTPException as http_exception:
@@ -69,7 +72,5 @@ def verify_session(request: Request):
 
     except Exception as e:
         return JSONResponse({'status': False, 'detail': 'Internal Server Error'}, status_code=500)
-
-
 
 
