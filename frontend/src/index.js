@@ -12,6 +12,7 @@ import Home from "./Home"
 import Suggestions from "./Suggestions"
 import Account from "./Account"
 import Planning from "./Planning"
+// eslint-disable-next-line
 import Header from "./Header"
 import Footer from "./Footer"
 import Error from "./Error"
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
     path : '/blogs',
-    element : <><Header/><Blogs/><Footer/></>
+    element : <><Blogs/><Footer/></>
   },
   {
     path : '/auth',
@@ -33,24 +34,24 @@ const router = createBrowserRouter([
   },
   {
     path : '/account',
-    element : <><Header/><Account/><Footer/></>
+    element : <><Account/><Footer/></>
   }
   ,
   {
     path : '/plan',
-    element : <><Header/><Planning/><Footer/></>
+    element : <><Planning/><Footer/></>
   },
   {
     path : '/blogdata',
-    element : <><Header/><BlogData/><Footer/></>
+    element : <><BlogData/><Footer/></>
   },
   {
     path : '/placedata',
-    element : <><Header/><PlaceData/><Footer/></>
+    element : <><PlaceData/><Footer/></>
   },
   {
     path : '/explore',
-    element : <><Header/><Suggestions/><Footer/></>
+    element : <><Suggestions/><Footer/></>
   }
 ]);
 

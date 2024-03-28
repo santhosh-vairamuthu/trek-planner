@@ -9,42 +9,52 @@ import { Link } from "react-router-dom"
 
 
 const Home = () => {
-    const [state, setState] = useState(false);
 
+    const [isLoggedIn, setIsLoggedIn] = useState(null); 
+    const [isLoading, setIsLoading] = useState(true); 
 
-    useEffect( () => {
-        const verify = async () => {
+    useEffect(() => {
+        const verifySession = async () => {
             try {
-            const sessionToken = localStorage.getItem('token');
-            console.log(sessionToken);
-            if (sessionToken) {
-                const response = await axios.post('http://127.0.0.1:8000/verify_session',{},
-                    {
+                const sessionToken = localStorage.getItem('token');
+                if (sessionToken) {
+                    const response = await axios.post('http://127.0.0.1:8000/verify_session', {}, {
                         headers: {
-                            Authorization: `${sessionToken}`,
+                            Authorization: sessionToken
                         }
-                    }
-                );
-                setState(()=>{return (response.data.status)})
-            } else {
-                console.log('Session token not found');
-            }
+                    });
+                    setIsLoggedIn(response.data.status);
+                } else {
+                    setIsLoggedIn(false);
+                }
             } catch (error) {
                 console.log('Session verification error:', error);
+                setIsLoggedIn(false);
+            } finally {
+                setIsLoading(false);
             }
-        }
-        verify();
+        };
+
+        verifySession();
     }, []);
+
+    if (isLoading) {
+        return <div>Loading...</div>; 
+    }
 
     return (
         <>
-        <Header status={state}/>
+        <Header  isLoggedIn={isLoggedIn}/>
             <div className="container Home">
                 <div className='container rounded-5 mt-5 mb-5 banner p-5'>
                     <div className='container'>
                         <h1 className='bannerTitle text-white mb-2'>Craft Unforgettable Travel with Trek Planner</h1>
                         <p className='bannerDescription mt-2'>Your personalized digital companion for seamless trip planning, <br/>itinerary customization, and expert travel recommendations!</p>
-                        <Link className='btn bannerButton px-5' to='/plan'>Get Started</Link>
+                        {isLoggedIn === true ? (
+                            <Link className='btn bannerButton px-5' to='/plan'>Get Started</Link>
+                        ) : (
+                            <Link className='btn bannerButton px-5' to='/auth'>Login to get started</Link>
+                        )}
                         <div className='container d-sm-none d-lg-block' style={{minHeight:"40vh"}}></div>
                     </div>
                 </div>
