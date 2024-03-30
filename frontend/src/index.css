@@ -339,3 +339,18 @@ body {
 .Suggestions .saveButtonImage:hover{
   color: var(--background-4);
 }
+
+.Blogs .searchCity{
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2); 
+  width: 25vw;
+  height: 6vh;
+}
+
+.Blogs .searchCity::-ms-input-placeholder { 
+  color: var(--primary-2)
+}
+
+.Blogs .searchCity::placeholder {
+  color: var(--primary-2);
+  font-weight: bolder;
+}

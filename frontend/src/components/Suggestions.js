@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Header from "./Header"
-import goa from "./assets/goa.jpg"
-import goa1 from "./assets/goa1.jpg"
+import goa from "../assets/goa.jpg"
+import goa1 from "../assets/goa1.jpg"
 
 
 

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Header from "./Header"
-import pastImage from "./assets/pastEventImage.jpg";
+import pastImage from "../assets/pastEventImage.jpg";
 // import ongoingImage from "./assets/ongoingEventImage.jpg";
 // import upcomingImage from "./assets/upcomingEventImage.jpg";
 

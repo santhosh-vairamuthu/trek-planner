@@ -4,18 +4,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 // eslint-disable-next-line
 import App from "./App"
-import Login from "./Login"
-import Blogs from "./Blogs"
-import BlogData from "./BlogData"
-import PlaceData from "./PlaceData"
-import Home from "./Home"
-import Suggestions from "./Suggestions"
-import Account from "./Account"
-import Planning from "./Planning"
+import Login from "./components/Login"
+import Blogs from "./components/Blogs"
+import BlogData from "./components/BlogData"
+import PlaceData from "./components/PlaceData"
+import Home from "./components/Home"
+import Suggestions from "./components/Suggestions"
+import Account from "./components/Account"
+import Planning from "./components/Planning"
 // eslint-disable-next-line
-import Header from "./Header"
-import Footer from "./Footer"
-import Error from "./Error"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+import Error from "./components/Error"
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 
 const router = createBrowserRouter([

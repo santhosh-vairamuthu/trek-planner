@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Header from "./Header"
-import image1 from "./assets/pic1.jpg"
-import image2 from "./assets/pic2.jpg"
-import image3 from "./assets/pic3.jpeg"
+import image1 from "../assets/pic1.jpg"
+import image2 from "../assets/pic2.jpg"
+import image3 from "../assets/pic3.jpeg"
 import { Link } from "react-router-dom"
 
 
