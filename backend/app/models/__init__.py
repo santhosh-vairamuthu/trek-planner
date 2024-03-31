@@ -5,8 +5,8 @@ import pymongo
 
 
 client = pymongo.MongoClient("localhost", 27017)
-db = client.test
-conn = db["t2"]
+db = client.trek
+conn = db["plans"]
 
 
 SQLALCHEMY_DATABASE_URL = Configuration.DB_URI

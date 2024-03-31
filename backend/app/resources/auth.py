@@ -47,7 +47,7 @@ def login(user:schemas.Login ,db:Session=Depends(get_db),):
         print(e)
         return JSONResponse({'status': 'False'})
     
-# TODO : complete this action
+
 @router.post("/verify_session")
 async def verify_session(request: Request):
     try:

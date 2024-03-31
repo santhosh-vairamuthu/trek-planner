@@ -19,12 +19,6 @@ class User(Base):
 
     created_at = Column(DateTime, nullable=False, default=func.now())
 
-class Plan(Base):
-    __tablename__ = 'plan'
-    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False, index=True)
-
-
-    created_at = Column(DateTime, nullable=False, default=func.now())
 
 class UserPlan(Base):
     __tablename__ = 'userPlans'

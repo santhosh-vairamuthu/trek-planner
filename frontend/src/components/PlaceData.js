@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from "./Header"
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const api = axios.create({
@@ -16,6 +16,7 @@ const PlaceData = () => {
     const { city } = location.state || { city: "error" };
     const { days } = location.state || { days: "error" };
     const [maxCount, setCount] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const verifySession = async () => {
@@ -99,6 +100,32 @@ const PlaceData = () => {
 
     const deleteData = (id) => {
         setData(data.filter(d => d.fsq_id !== id));
+    };
+
+    const savePlan = () => {
+        const plan = data.filter(p => {
+            return p.day <= days;
+        });
+        
+        const save = async () => {
+            try {
+                const sessionToken = localStorage.getItem('token');
+                if (sessionToken && plan) {
+                    const response = await axios.post('http://127.0.0.1:8000/save_plan', {plan}, {
+                        headers: {
+                            Authorization: sessionToken
+                        }
+                    });
+                    if(response.data.status){
+                        navigate("/account");
+                    }
+                }
+            } catch (error) {
+                console.log('Error:', error);
+            }
+            
+        }
+        save();
     };
 
     if (isLoading) {
@@ -212,6 +239,10 @@ const PlaceData = () => {
                         </>
                     )}
                 </div>
+                <div className="d-flex justify-content-center align-items-center mb-5" >
+                    <button className='btn btn-success' onClick={savePlan}>Save</button>
+                </div>
+
             </div>
         </>
     );    
