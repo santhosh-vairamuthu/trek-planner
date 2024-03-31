@@ -6,6 +6,7 @@ backend/app/configs/__pycache__/
 backend/app/resources/__pycache__/
 backend/app/routes/__pycache__/
 backend/appi/__pycache__/
+backend/.venv/
 
 
 # dependencies

@@ -1,6 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from app.configs.local_config import Configuration
+import pymongo
+
+
+client = pymongo.MongoClient("localhost", 27017)
+db = client.test
+conn = db["t2"]
 
 
 SQLALCHEMY_DATABASE_URL = Configuration.DB_URI
@@ -18,3 +24,4 @@ def get_db():
         yield db
     finally:
         db.close()
+        

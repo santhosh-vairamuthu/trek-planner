@@ -59,10 +59,18 @@ def find_tourist_attractions(lat, lon):
             headersAddress = {
                 "accept": "application/json",
                 "Authorization": "fsq30t26NIz0zbvZ+44dbg4RJePX+Tf7xawhjYXSiN8f7+Y="
-}
+            }
+            
+            urlPhoto = f"https://api.foursquare.com/v3/places/{result['fsq_id']}/photos"
+
+            headersPhoto = {
+                "accept": "application/json",
+                "Authorization": "fsq30t26NIz0zbvZ+44dbg4RJePX+Tf7xawhjYXSiN8f7+Y="
+            }
 
             responseData = requests.get(urlDetail, headers=headersDetail)
             responseAddress = requests.get(urlAddress, headers=headersAddress)
+            responsePhoto = requests.get(urlPhoto, headers= headersPhoto)
 
             if responseData.status_code == 200:
                 tip_data = responseData.json()
@@ -83,6 +91,18 @@ def find_tourist_attractions(lat, lon):
 
                 # Retrieve formatted address from the location field
                 address = result["location"]["formatted_address"]
+                
+                
+                imgUrl = None
+                if responsePhoto.status_code == 200:
+                    imageResponse = responsePhoto.json()
+                    if len(imageResponse)!=0:
+                        imgUrl =  f"{imageResponse[0]["prefix"]}original{imageResponse[0]["suffix"]}"
+                else:
+                    continue
+                
+                if not imgUrl:
+                    continue
 
                 if len(tips) > 3:
                     tips = tips[:3]
@@ -93,6 +113,7 @@ def find_tourist_attractions(lat, lon):
                     "latitude": result["geocodes"]["main"]["latitude"],
                     "longitude": result["geocodes"]["main"]["longitude"],
                     "review": tips,
+                    "image" : imgUrl,
                     "address": address,  # Correct the key name to "address"
                 }
 

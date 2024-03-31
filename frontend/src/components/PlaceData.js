@@ -69,7 +69,7 @@ const PlaceData = () => {
 
     return (
         <>
-        <Header status={isLoggedIn}/>
+        <Header isLoggedIn={isLoggedIn}/>
             <div className='container PlaceData'>
                 <div className='container mt-3 p-5'>
                     <div className='row'>
@@ -87,6 +87,7 @@ const PlaceData = () => {
                                             <div className="card-header fw-bolder text-white">
                                                 {place.name}
                                             </div>
+                                            <img src={place.image} class="card-img-top rounded-0" alt={place.name} style={{height:"25vh"}}></img>
                                             <div className="card-body text-center">
                                                 <p className="fw-bolder">Category : {place.category}</p>
                                                 <div className='container bg-primary-subtle mt-1 mb-2 rounded-2 border p-1'>
