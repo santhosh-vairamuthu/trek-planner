@@ -87,7 +87,7 @@ const Planning = () => {
         const options = [];
         // Filter cities based on input
         if (input.length > 0) {
-            const cities = ['Chennai', 'Madurai', 'Cochin', 'Kovilpatti', 'Ooty', 'Kodaikanal', 'Coimbatore'];
+            const cities = ['Chennai', 'Madurai', 'Cochin', 'Kovilpatti', 'Ooty', 'Kodaikanal', 'Coimbatore', 'Bengaluru'];
             cities.forEach(city => {
                 if (city.toLowerCase().includes(input.toLowerCase())) {
                     options.push(city);

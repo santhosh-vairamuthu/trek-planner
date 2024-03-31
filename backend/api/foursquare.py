@@ -114,12 +114,20 @@ def find_tourist_attractions(lat, lon):
                     "longitude": result["geocodes"]["main"]["longitude"],
                     "review": tips,
                     "image" : imgUrl,
-                    "address": address,  # Correct the key name to "address"
+                    "address": address,
                 }
 
                 attractions.append(attraction_details)
             else:
                 continue
+            
+        day,count = 1, 0
+        for i in attractions:
+            i["day"] = day
+            count += 1
+            if count == 3:
+                day += 1
+                count = 0
 
 
 
