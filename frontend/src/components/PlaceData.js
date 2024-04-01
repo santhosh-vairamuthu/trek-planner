@@ -29,6 +29,7 @@ const PlaceData = () => {
                         }
                     });
                     setIsLoggedIn(response.data.status);
+                    
                 } else {
                     setIsLoggedIn(false);
                 }
@@ -102,31 +103,34 @@ const PlaceData = () => {
         setData(data.filter(d => d.fsq_id !== id));
     };
 
-    const savePlan = () => {
-        const plan = data.filter(p => {
-            return p.day <= days;
-        });
-        
-        const save = async () => {
-            try {
-                const sessionToken = localStorage.getItem('token');
-                if (sessionToken && plan) {
-                    const response = await axios.post('http://127.0.0.1:8000/save_plan', {plan}, {
+    const savePlan = async () => {
+        try {
+            const sessionToken = localStorage.getItem('token');
+            if (sessionToken && city && days) {
+                const plan = data.filter(p => p.day <= days);
+                const formattedPlan = {
+                    planData: plan,
+                    plan_city: city,
+                    totalDays: days
+                };
+                const response = await axios.post(
+                    'http://127.0.0.1:8000/save_plan', 
+                    formattedPlan, 
+                    {
                         headers: {
-                            Authorization: sessionToken
+                            Authorization: `Bearer ${sessionToken}`
                         }
-                    });
-                    if(response.data.status){
-                        navigate("/account");
                     }
+                );
+                if (response.data.status) {
+                    navigate("/account");
                 }
-            } catch (error) {
-                console.log('Error:', error);
             }
-            
+        } catch (error) {
+            console.log('Error:', error);
         }
-        save();
     };
+    
 
     if (isLoading) {
         return (
@@ -236,12 +240,13 @@ const PlaceData = () => {
                                     })}
                                 </div>
                             </div>
+                            <div className="d-flex justify-content-center align-items-center mb-5" >
+                                <button className='btn btn-success' onClick={savePlan}>Save</button>
+                            </div>
                         </>
                     )}
                 </div>
-                <div className="d-flex justify-content-center align-items-center mb-5" >
-                    <button className='btn btn-success' onClick={savePlan}>Save</button>
-                </div>
+                
 
             </div>
         </>

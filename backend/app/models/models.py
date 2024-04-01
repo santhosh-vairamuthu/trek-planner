@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey,  String, DateTime, Integer
+from sqlalchemy import Boolean, Column, ForeignKey,  String, DateTime, Integer, Date
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
@@ -24,7 +24,10 @@ class UserPlan(Base):
     __tablename__ = 'userPlans'
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False, index=True)
     user_id = Column(Integer, ForeignKey('user.id', ondelete="CASCADE"), nullable=False)
-    plan_id = Column(Integer, ForeignKey('plan.id', ondelete="CASCADE"),nullable=False)
+    plan_city = Column(String(100), nullable=False)
+    startDate = Column(Date, nullable=True)
+    totalDays = Column(Integer, nullable=False)
+    plan_id = Column(String(100),nullable=False)
 
 
     created_at = Column(DateTime, nullable=False, default=func.now())

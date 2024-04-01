@@ -7,6 +7,7 @@ from app.models import get_db, models, schemas, conn
 from starlette.middleware.sessions import SessionMiddleware
 from sqlalchemy.orm import Session
 from app.resources.utils import verify_user
+from typing import List
 
 router = APIRouter()
 
@@ -21,18 +22,39 @@ def signup(placeData:schemas.placeForm ,db:Session=Depends(get_db),):
         print(e)
         return JSONResponse({'data': 'False'})
     
-''' TODO: Crate a plan with plan details, get the details from the request. 
-    TODO: After creating a plan get the plan id and insert the data plan data in mongo db
-    TODO: Create a schema for request
-'''
+
 @router.post("/save_plan")
-def save_plan(request: Request,db:Session=Depends(get_db),user:str = Depends(verify_user)):
+def save_plan(request: Request, plan_data: schemas.UserPlan, db: Session = Depends(get_db), user: str = Depends(verify_user)):
     print(user)
     if user == "_false":
-        return JSONResponse({"status":False})
+        return JSONResponse({"status": False})
     try:
-        user_data = db.query(models.User).filter(models.User.email == user).first()
-        pass
+        received_plan_data = plan_data.planData
+        userDetail = db.query(models.User).filter(models.User.email == user).first()
+        if not userDetail:
+            return JSONResponse({"status": False})
+        
+        userPlansCount = db.query(models.UserPlan).filter(models.UserPlan.user_id == userDetail.id).all()
+        planCount = len(userPlansCount)
+        data = {
+            "plan_city": plan_data.plan_city,
+            "totalDays": plan_data.totalDays,
+            "user_id": userDetail.id,
+            "plan_id": userDetail.username + str(planCount)
+        }
+        for i in received_plan_data:
+            # Create a new instance of PlanData with updated plan_id and planid
+            new_plan_data = schemas.PlanDataInsert(**i.dict(), plan_id=data["plan_id"])
+            conn.insert_one(new_plan_data.dict())
+        
+        new_user_plan = models.UserPlan(**data)
+        db.add(new_user_plan)
+        db.commit()
+        db.refresh(new_user_plan)
+        
+        return JSONResponse({"status": True})
     except Exception as e:
-        pass
-    pass
+        print(e)
+        raise HTTPException(status_code=500, detail="Internal Server Error")
+
+
