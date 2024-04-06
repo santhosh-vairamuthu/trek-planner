@@ -15,14 +15,36 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     return encoded_jwt
 
 def verify_user(request: Request):
-    token = request.headers.get("Authorization")
-    token = list(token.split())[1]
-    if token:
+    try:
+        token = request.headers.get("Authorization")
+        token = list(token.split())[1]
+        if token:
+            try:
+                payload = jwt.decode(token, BaseConfig.SECRET_KEY, algorithms=[BaseConfig.ALGORITHM])
+                user_name = payload.get("user_name")
+                if user_name:
+                    return user_name
+            except JWTError:
+                return "_false"
+    except Exception as e:
+        return "_false"
+    
+def verify_session(request: Request):
+    try:
+        token = request.headers.get("Authorization")
+        if not token:
+            return "_false"
+
         try:
             payload = jwt.decode(token, BaseConfig.SECRET_KEY, algorithms=[BaseConfig.ALGORITHM])
-            user_name = payload.get("user_name")
-            if user_name:
-                return user_name
-        except JWTError:
-            pass
-    return "_false"
+        except jwt.JWTError:
+            return "_false"
+
+        username = payload.get("user_name")
+        if not username:
+            return "_false"
+        
+        return username
+
+    except Exception as e:
+        return "_false"

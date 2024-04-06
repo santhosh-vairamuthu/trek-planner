@@ -6,8 +6,9 @@ from fastapi.staticfiles import StaticFiles
 from app.models import get_db, models, schemas, conn
 from starlette.middleware.sessions import SessionMiddleware
 from sqlalchemy.orm import Session
-from app.resources.utils import verify_user
+from app.resources.utils import verify_user, verify_session
 from typing import List
+from datetime import datetime
 
 router = APIRouter()
 
@@ -43,7 +44,6 @@ def save_plan(request: Request, plan_data: schemas.UserPlan, db: Session = Depen
             "plan_id": userDetail.username + str(planCount)
         }
         for i in received_plan_data:
-            # Create a new instance of PlanData with updated plan_id and planid
             new_plan_data = schemas.PlanDataInsert(**i.dict(), plan_id=data["plan_id"])
             conn.insert_one(new_plan_data.dict())
         
@@ -56,5 +56,32 @@ def save_plan(request: Request, plan_data: schemas.UserPlan, db: Session = Depen
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail="Internal Server Error")
+    
+@router.get("/account")
+def account(request: Request, db: Session = Depends(get_db), user: str = Depends(verify_session)):
+    if user == "_false":
+        return JSONResponse({"status": False})
+    try:
+        user_detail = db.query(models.User).filter(models.User.email == user).first()
+        plans = db.query(models.UserPlan).filter(models.UserPlan.user_id == user_detail.id).all()
+        user_detail_dict = user_detail.__dict__
+        user_detail_dict['created_at'] = user_detail_dict['created_at'].strftime("%Y-%m-%d")
 
+        plans_list = []
+        for plan in plans:
+            plan_dict = plan.__dict__
+            plan_dict['created_at'] = plan_dict['created_at'].strftime("%Y-%m-%d")
+            plans_list.append(plan_dict)
 
+        plans_list = sorted(plans_list, key=lambda x: datetime.strptime(x['created_at'], "%Y-%m-%d"), reverse=True)
+        
+        user_detail_dict.pop('_sa_instance_state', None)
+        for plan in plans_list:
+            plan.pop('_sa_instance_state', None)
+    
+        return JSONResponse({"user": user_detail_dict["username"], "plans": plans_list})
+
+        
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail="Internal Server Error")
