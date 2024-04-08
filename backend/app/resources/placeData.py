@@ -7,6 +7,7 @@ from app.models import get_db, models, schemas, conn
 from starlette.middleware.sessions import SessionMiddleware
 from sqlalchemy.orm import Session
 from app.resources.utils import verify_user, verify_session
+import requests
 from typing import List
 from datetime import datetime
 
@@ -85,3 +86,21 @@ def account(request: Request, db: Session = Depends(get_db), user: str = Depends
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail="Internal Server Error")
+    
+GRAPH_HOPPER_API_KEY = "f952753c-ed00-40cc-b7b7-17815c5b3e9e"
+
+places = [
+    {
+        "fsq_id": "4b7fba44f964a520073b30e3",
+        "name": "Sathyam Cinemas",
+        "category": "Movie Theater",
+        "latitude": 13.055426,
+        "longitude": 80.25798,
+        "address": "8 Thiruvika Road, Royapettah (Royapettah), Chennai 600014, Tamil Nadu"
+    },
+    # Add more places as needed
+]
+
+@router.get("/places", response_model=List[dict])
+async def get_places():
+    return places
