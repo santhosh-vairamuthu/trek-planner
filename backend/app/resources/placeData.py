@@ -10,6 +10,7 @@ from app.resources.utils import verify_user, verify_session
 import requests
 from typing import List
 from datetime import datetime
+from bson.json_util import dumps
 
 router = APIRouter()
 
@@ -86,8 +87,6 @@ def account(request: Request, db: Session = Depends(get_db), user: str = Depends
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail="Internal Server Error")
-    
-GRAPH_HOPPER_API_KEY = "f952753c-ed00-40cc-b7b7-17815c5b3e9e"
 
 places = [
     {
@@ -104,3 +103,23 @@ places = [
 @router.get("/places", response_model=List[dict])
 async def get_places():
     return places
+
+@router.get("/getPlanData")
+def getPlanData(request: Request, db: Session = Depends(get_db), user: str = Depends(verify_session)):
+    try:
+        pass
+        plan_id = request.query_params.get("plan_id")
+        plans_cursor = conn.find({"plan_id": plan_id})
+        plans_list = []
+        for plan in plans_cursor:
+            reviews = []
+            for review in plan['review']:
+                reviews.append(schemas.Review(**review))
+            plan_data = schemas.PlanDataInsert(**plan)  # Remove 'review' keyword argument
+            plan_data.review = reviews  # Assign reviews separately
+            plans_list.append(plan_data.dict())
+
+        return {"plans": plans_list}
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail="Internal Server Error")

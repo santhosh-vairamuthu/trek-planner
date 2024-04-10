@@ -17,6 +17,7 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import Error from "./components/Error"
 import Test from "./components/Test"
+import View from "./components/View"
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path : '/explore',
     element : <><Suggestions/><Footer/></>
+  },
+  {
+    path : '/viewplan',
+    element : <><View/><Footer/></>
   },
   {
     path : '/test',

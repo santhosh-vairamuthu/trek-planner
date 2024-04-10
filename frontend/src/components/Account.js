@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from './Header';
-import { useNavigate } from 'react-router-dom';
+import  { useNavigate, Link } from 'react-router-dom';
 
 const api = axios.create({
     baseURL: 'http://127.0.0.1:8000/account',
@@ -72,7 +72,7 @@ const Account = () => {
                                         <h5 className="card-title fw-bolder">{plan.plan_city}</h5>
                                         <p className="card-text">Days : {plan.totalDays}</p>
                                         <p className='card-text'>Created at {plan.created_at}</p>
-                                        <button className='btn btn-info'>View Plan <i className="bi bi-eye-fill"></i></button>
+                                        <Link to='/viewplan'  state={{ planId: plan.plan_id, days : plan.totalDays}} className='btn btn-info'>View Plan <i className="bi bi-eye-fill"></i></Link>
                                     </div>
                                 </div>
                             </div>
