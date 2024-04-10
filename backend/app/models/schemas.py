@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr, constr, Field
 from datetime import datetime, date
-from typing import Optional, List
+from typing import Optional, List, Union
 
 class User(BaseModel):
     username : str
@@ -56,3 +56,8 @@ class PlanDataInsert(BaseModel):
     address: str
     day: int
     plan_id : str
+    
+class BlogCreate(BaseModel):
+    blogContent: str
+    planId: str
+    blogImages: Optional[List[Union[bytes, str]]] = None
