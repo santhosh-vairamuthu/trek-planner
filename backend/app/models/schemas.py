@@ -70,3 +70,13 @@ class BlogData(BaseModel):
     blog_content: str
     plan_id: str
     date_created: date
+    
+class BlogDataById(BaseModel):
+    _id: Optional[str]
+    user_id: int
+    plan_city: str
+    images: Optional[List[Union[bytes, str]]] = []
+    blog_content: str
+    plan_id: str
+    date_created: date
+    totalDays: int

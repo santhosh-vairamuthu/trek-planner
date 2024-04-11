@@ -73,29 +73,15 @@ const Account = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const base64Images = [];
-    
-        for (const file of blogImages) {
-            const reader = new FileReader();
-    
-            reader.onload = function(event) {
-                const base64String = event.target.result;
-                base64Images.push(base64String); 
-            };
-    
-            reader.readAsDataURL(file);
-        }
     
         try {
             const sessionToken = localStorage.getItem('token');
-    
-            await Promise.all(blogImages.map(file => new Promise((resolve, reject) => {
+            const base64Images = await Promise.all(blogImages.map(file => new Promise((resolve, reject) => {
                 const reader = new FileReader();
     
                 reader.onload = function(event) {
                     const base64String = event.target.result;
-                    base64Images.push(base64String);
-                    resolve();
+                    resolve(base64String);
                 };
     
                 reader.onerror = function(error) {
@@ -104,6 +90,7 @@ const Account = () => {
     
                 reader.readAsDataURL(file);
             })));
+    
             await axios.post(
                 'http://127.0.0.1:8000/create_blog',
                 {

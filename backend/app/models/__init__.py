@@ -8,6 +8,7 @@ client = pymongo.MongoClient("localhost", 27017)
 db = client.trek
 conn = db["plans"]
 connBlog = db["blogs"]
+connCity = db["city"]
 # fs = gridfs.GridFS(connBlog)
 
 

@@ -160,7 +160,34 @@ def getPlaceData(cityName):
         #     print(f"{i}. {attraction}")
     else:
         print("Could not find the location of the city.")
+        
+def find_city_image(city_name, lat, lon):
+    radius = 10000  # Radius in meters to search around the coordinates
+    api_url = f"https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&generator=geosearch&ggscoord={lat}%7C{lon}&ggsradius={radius}&ggslimit=5&iilimit=1&iiprop=url&iiurlwidth=800&iiurlheight=600&iiurlparam=original&titles={city_name}"
 
+    try:
+        response = requests.get(api_url)
+        response.raise_for_status()
+        data = response.json()
+
+        # Extract image URLs
+        pages = data["query"]["pages"]
+        images = [page["imageinfo"][0]["url"] for page in pages.values()]
+        if images:
+            return images[0]
+        else:
+            return None
+    except requests.RequestException as e:
+        print("Error fetching data:", e)
+        return None
+
+def getCityImg(cityName):
+    city_name = cityName
+    opencage_api_key = "5cbe467dfd36484d9b873589b7864a6a"
+    lat, lon = get_lat_long(city_name, opencage_api_key)
+    if lat is not None and lon is not None:
+        return find_city_image(city_name, lat, lon)
+    
 
 
 

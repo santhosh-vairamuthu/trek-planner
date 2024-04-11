@@ -25,17 +25,16 @@ async def create_blog(request: Request, db: Session = Depends(get_db), user: str
         plan_id = data.get("planId")
         blog_content = data.get("blogContent")
         blog_images = data.get("blogImages", [])
+        print(len(blog_images))
 
         userDetails = db.query(models.User).filter(models.User.email == user).first()
         planDetails = db.query(models.UserPlan).filter(models.UserPlan.plan_id == plan_id).first()
 
-        # image_data = []
-        # for image in blog_images:
-        #     try:
-        #         contents = base64.b64encode(image)
-        #         image_data.append(contents)
-        #     except Exception as image_decode_error:
-        #         continue
+        # Check if a blog entry with the same plan ID and user ID already exists
+        existing_blog = connBlog.find_one({"plan_id": plan_id, "user_id": userDetails.id})
+        if existing_blog:
+            # Remove the existing blog entry
+            connBlog.delete_one({"_id": existing_blog["_id"]})
 
         date_created = date.today().isoformat() 
         plan_data_dict = {
@@ -68,3 +67,18 @@ def blogs(request: Request, db: Session = Depends(get_db)):
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail="Internal Server Error")
+
+
+@router.get("/getPlanDataById")
+def getPlanData(request: Request, db: Session = Depends(get_db)):
+    try:
+        plan_id = request.query_params.get("plan_id")
+        planDetails = db.query(models.UserPlan).filter(models.UserPlan.plan_id == plan_id).first()
+        plans_cursor = connBlog.find({"plan_id": plan_id})
+        for i in plans_cursor:
+            data = schemas.BlogDataById(**i, totalDays=planDetails.totalDays) 
+            return {"data": data}
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail="Internal Server Error")
+    
