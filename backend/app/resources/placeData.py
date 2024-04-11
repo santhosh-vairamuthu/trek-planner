@@ -125,31 +125,3 @@ def getPlanData(request: Request, db: Session = Depends(get_db), user: str = Dep
         print(e)
         raise HTTPException(status_code=500, detail="Internal Server Error")
     
-@router.post("/create_blog")
-async def create_blog(request: Request, db: Session = Depends(get_db), user: str = Depends(verify_session)):
-    try:
-        data = await request.json()
-        plan_id = data.get("planId")
-        blog_content = data.get("blogContent")
-        blog_images = data.get("blogImages", [])
-
-        userDetails = db.query(models.User).filter(models.User.email == user).first()
-        planDetails = db.query(models.UserPlan).filter(models.UserPlan.plan_id == plan_id).first()
-
-        image_data = []
-        for image in blog_images:
-            contents = base64.b64decode(image)
-            image_data.append(contents)
-
-        plan_data_dict = {
-            "user_id": user.id,
-            "plan_city": planDetails.plan_city,
-            "images": image_data,
-            "blog_content": blog_content,
-            "plan_id": plan_id
-        }
-        result = await connBlog.insert_one(plan_data_dict)
-        return {"status": True, "message": "Blog created successfully"}
-    except Exception as e:
-        print(e)
-        raise HTTPException(status_code=500, detail="Internal Server Error")

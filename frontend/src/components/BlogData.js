@@ -6,10 +6,13 @@ import goa1 from '../assets/goa1.jpg'
 import goa2 from '../assets/goa2.jpg'
 import goa3 from '../assets/goa3.jpg'
 import goa4 from '../assets/goa4.jpg'
+import { useLocation } from 'react-router-dom';
 
 const BlogData = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(null); 
-    const [isLoading, setIsLoading] = useState(true); 
+    const [isLoading, setIsLoading] = useState(true);
+    const location = useLocation();
+    const { planId } = location.state || { planId : "error" };
 
     useEffect(() => {
         const verifySession = async () => {

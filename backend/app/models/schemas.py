@@ -60,4 +60,13 @@ class PlanDataInsert(BaseModel):
 class BlogCreate(BaseModel):
     blogContent: str
     planId: str
-    blogImages: Optional[List[Union[bytes, str]]] = None
+    blogImages: Optional[List[Union[bytes, str]]] = []
+    
+class BlogData(BaseModel):
+    _id: Optional[str]
+    user_id: int
+    plan_city: str
+    images: Optional[List[Union[bytes, str]]] = []
+    blog_content: str
+    plan_id: str
+    date_created: date

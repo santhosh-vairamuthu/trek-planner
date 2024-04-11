@@ -8,7 +8,7 @@ client = pymongo.MongoClient("localhost", 27017)
 db = client.trek
 conn = db["plans"]
 connBlog = db["blogs"]
-fs = gridfs.GridFS(connBlog)
+# fs = gridfs.GridFS(connBlog)
 
 
 SQLALCHEMY_DATABASE_URL = Configuration.DB_URI

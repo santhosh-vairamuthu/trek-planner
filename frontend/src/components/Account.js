@@ -73,18 +73,57 @@ const Account = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(blogImages)
+        const base64Images = [];
+    
+        for (const file of blogImages) {
+            const reader = new FileReader();
+    
+            reader.onload = function(event) {
+                const base64String = event.target.result;
+                base64Images.push(base64String); 
+            };
+    
+            reader.readAsDataURL(file);
+        }
+    
         try {
-            await axios.post('http://127.0.0.1:8000/create_blog',{
-                planId : selectedPlanId,
-                blogContent : blogContent,
-                blogImages : blogImages
-            });
+            const sessionToken = localStorage.getItem('token');
+    
+            await Promise.all(blogImages.map(file => new Promise((resolve, reject) => {
+                const reader = new FileReader();
+    
+                reader.onload = function(event) {
+                    const base64String = event.target.result;
+                    base64Images.push(base64String);
+                    resolve();
+                };
+    
+                reader.onerror = function(error) {
+                    reject(error);
+                };
+    
+                reader.readAsDataURL(file);
+            })));
+            await axios.post(
+                'http://127.0.0.1:8000/create_blog',
+                {
+                    planId: selectedPlanId,
+                    blogContent: blogContent,
+                    blogImages: base64Images
+                },
+                {
+                    headers: {
+                        Authorization: sessionToken
+                    }
+                }
+            );
+    
             handleCloseModal();
         } catch (error) {
             console.error('Error creating blog:', error);
         }
     };
+    
     
 
     return (
@@ -131,7 +170,7 @@ const Account = () => {
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="blogPics" className="form-label">Blog Images</label>
-                                                <input type="file" className="form-control" id="blogPics" onChange={(e) => setBlogImages(e.target.files)} multiple />
+                                                <input type="file" className="form-control" id="blogPics" onChange={(e) => setBlogImages([...e.target.files])} multiple />
                                             </div>
                                             <button type="submit" className="btn btn-primary">Submit</button>
                                         </form>
