@@ -107,6 +107,41 @@ const PlaceData = () => {
                             );
                         })}
                         </div>
+                        <div>
+                            <p className='h2 fw-bolder fs-1 mt-3'>Suggested</p>
+                            <div className='row'>
+                                {data && data.length > 0 && data.map((place) => {
+                                if (place.day === 0){
+                                    return (
+                                        <>
+                                            <div className='col-4 col-sm-12 col-md-6 col-lg-4 mt-2 mb-2' key={place.fsq_id}>
+                                                <div className="card cardData">
+                                                    <div className="card-header fw-bolder text-white">
+                                                        {place.name}
+                                                    </div>
+                                                    <img src={place.image} className="card-img-top rounded-0" alt={place.name} style={{ height: "25vh" }} />
+                                                    <div className="card-body text-center">
+                                                        <p className="fw-bolder">Category : {place.category}</p>
+                                                        <div className='container bg-primary-subtle mt-1 mb-2 rounded-2 border p-1'>
+                                                            <p className='fw-bolder'>Address : {place.address}</p>
+                                                        </div>
+                                                        <ul className="list-group">
+                                                            {place.review.map(review => (
+                                                                <li className="list-group-item" key={review.id}>
+                                                                    <p>{review.text}</p>
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </>
+                                    );
+                                }
+                            })}
+                            </div>
+                        </div>
                     </>
                 </div>
             </div>

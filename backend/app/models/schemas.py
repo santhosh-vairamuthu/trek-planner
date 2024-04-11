@@ -80,3 +80,7 @@ class BlogDataById(BaseModel):
     plan_id: str
     date_created: date
     totalDays: int
+    
+class Location(BaseModel):
+    latitude: float
+    longitude: float

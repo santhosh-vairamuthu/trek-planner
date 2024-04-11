@@ -18,7 +18,7 @@ router = APIRouter()
 
 
 @router.post("/getPlaceData")
-def signup(placeData:schemas.placeForm ,db:Session=Depends(get_db),):
+def signup(placeData:schemas.placeForm , request:Request, db:Session=Depends(get_db),):
     try:
         data = getPlaceData(placeData.destinationCity)
         return JSONResponse({'data': data})

@@ -1,11 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Header from "./Header"
-import goa from '../assets/goa.jpg'
-import goa1 from '../assets/goa1.jpg'
-import goa2 from '../assets/goa2.jpg'
-import goa3 from '../assets/goa3.jpg'
-import goa4 from '../assets/goa4.jpg'
 import { useLocation, } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 

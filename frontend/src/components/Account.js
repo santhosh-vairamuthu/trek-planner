@@ -122,22 +122,25 @@ const Account = () => {
                         <div className='h2 fw-bolder'>Hello {userName},</div>
                         <div className='container mt-3'>
                             <p className='fs-4 d-flex justify-content-center'>Your Plans</p>
-                            <div className='container row'>
-                                {planData && planData.map((plan) => (
-                                    <div className='col-4' key={plan.id}>
-                                        <div className="card">
-                                            <div className="card-body text-center justify-content-center align-items-center">
-                                                <h5 className="card-title fw-bolder">{plan.plan_city}</h5>
-                                                <p className="card-text">Days : {plan.totalDays}</p>
-                                                <p className='card-text'>Created at {plan.created_at}</p>
-                                                <div className='d-flex gap-2 justify-content-center'>
-                                                    <Link to='/viewplan' state={{ planId: plan.plan_id, days: plan.totalDays }} className='btn btn-info'>View Plan <i className="bi bi-eye-fill"></i></Link>
+                            <div className='container row '>
+                            {planData && planData.map((plan) => (
+                                <div className='col-4 mt-3 mb-3' key={plan.id}>
+                                    <div className="card">
+                                        <div className="card-body text-center justify-content-center align-items-center">
+                                            <h5 className="card-title fw-bolder">{plan.plan_city}</h5>
+                                            <p className="card-text">Days : {plan.totalDays}</p>
+                                            <p className='card-text'>Created at {plan.created_at}</p>
+                                            <div className='d-flex gap-2 justify-content-center'>
+                                                <Link to='/viewplan' state={{ planId: plan.plan_id, days: plan.totalDays }} className='btn btn-info'>View Plan <i className="bi bi-eye-fill"></i></Link>
+                                                {(!plan.plan_city.includes("SuggestedPlans")) && (
                                                     <button onClick={() => openModal(plan.plan_id)} className='btn btn-info'>Write a Blog</button>
-                                                </div>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
-                                ))}
+                                </div>
+                            ))}
+
                             </div>
                         </div>
                     </div>

@@ -26,11 +26,11 @@ const Header = ({ isLoggedIn }) => {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/blogs" >Blog</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/explore" >Explore</Link>
-                            </li>
                             {isLoggedIn !== false && (
                                 <>
+                                    <li className="nav-item">
+                                        <Link className="nav-link" to="/explore" >Explore</Link>
+                                    </li>
                                     <li className="nav-item">
                                         <Link className="nav-link" to="/plan" >Plan</Link>
                                     </li>

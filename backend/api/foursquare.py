@@ -145,48 +145,124 @@ def getPlaceData(cityName):
     # OpenCage API key
     opencage_api_key = "5cbe467dfd36484d9b873589b7864a6a"
 
-
-    # Get latitude and longitude of the city
     lat, lon = get_lat_long(city_name, opencage_api_key)
 
     if lat is not None and lon is not None:
-        # print(f"Latitude: {lat}, Longitude: {lon}")
-
-        # Find tourist attractions using Foursquare API
         return find_tourist_attractions(lat, lon)
-
-        # print("\nTourist Attractions in", city_name + ":")
-        # for i, attraction in enumerate(attractions, 1):
-        #     print(f"{i}. {attraction}")
     else:
         print("Could not find the location of the city.")
         
-def find_city_image(city_name, lat, lon):
-    radius = 10000  # Radius in meters to search around the coordinates
-    api_url = f"https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&generator=geosearch&ggscoord={lat}%7C{lon}&ggsradius={radius}&ggslimit=5&iilimit=1&iiprop=url&iiurlwidth=800&iiurlheight=600&iiurlparam=original&titles={city_name}"
+        
+def find_tourist_attractions_city(lat, lon):
+    url = "https://api.foursquare.com/v3/places/search"
 
-    try:
-        response = requests.get(api_url)
-        response.raise_for_status()
+    headers = {
+        "accept": "application/json",
+        "Authorization": "fsq36P4uixz8udlRIt0Y/7hvtgyQZCLqkBkkR+Y1dQcUTYY="
+    }
+
+    params = {
+        "ll": f"{lat},{lon}",
+        "categories" : "16046,16000,10000,10027,16020,16046",
+        "limit" : 20
+    }
+
+    response = requests.get(url, headers=headers, params=params)
+
+    if response.status_code == 200:
         data = response.json()
+        results = data.get("results", [])
 
-        # Extract image URLs
-        pages = data["query"]["pages"]
-        images = [page["imageinfo"][0]["url"] for page in pages.values()]
-        if images:
-            return images[0]
-        else:
-            return None
-    except requests.RequestException as e:
-        print("Error fetching data:", e)
+        attractions = []
+        for result in results:
+            urlDetail = f"https://api.foursquare.com/v3/places/{result['fsq_id']}/tips"
+
+            headersDetail = {
+                "accept": "application/json",
+                "Authorization": "fsq36P4uixz8udlRIt0Y/7hvtgyQZCLqkBkkR+Y1dQcUTYY="
+            }
+
+
+            urlAddress = f"https://api.foursquare.com/v3/places/{result['fsq_id']}"
+
+            headersAddress = {
+                "accept": "application/json",
+                "Authorization": "fsq36P4uixz8udlRIt0Y/7hvtgyQZCLqkBkkR+Y1dQcUTYY="
+            }
+            
+            urlPhoto = f"https://api.foursquare.com/v3/places/{result['fsq_id']}/photos"
+
+            headersPhoto = {
+                "accept": "application/json",
+                "Authorization": "fsq36P4uixz8udlRIt0Y/7hvtgyQZCLqkBkkR+Y1dQcUTYY="
+            }
+
+            responseData = requests.get(urlDetail, headers=headersDetail)
+            responseAddress = requests.get(urlAddress, headers=headersAddress)
+            responsePhoto = requests.get(urlPhoto, headers= headersPhoto)
+
+            if responseData.status_code == 200:
+                tip_data = responseData.json()
+                tips = []
+
+                for tip in tip_data:
+                    tip_id = tip["id"]
+                    created_at = tip["created_at"]
+                    tip_text = tip["text"]
+
+                    tip_info = {
+                        "id": tip_id,
+                        "created_at": created_at,
+                        "text": tip_text
+                    }
+
+                    tips.append(tip_info)
+
+                # Retrieve formatted address from the location field
+                address = result["location"]["formatted_address"]
+                
+                
+                imgUrl = None
+                if responsePhoto.status_code == 200:
+                    imageResponse = responsePhoto.json()
+                    if len(imageResponse)!=0:
+                        imgUrl =  f"{imageResponse[0]["prefix"]}original{imageResponse[0]["suffix"]}"
+                else:
+                    continue
+                
+                if not imgUrl:
+                    continue
+
+                if len(tips) > 3:
+                    tips = tips[:3]
+                attraction_details = {
+                    "fsq_id" : result["fsq_id"],
+                    "name": result["name"],
+                    "category": result["categories"][0]["name"] if result["categories"] else None,
+                    "latitude": result["geocodes"]["main"]["latitude"],
+                    "longitude": result["geocodes"]["main"]["longitude"],
+                    "review": tips,
+                    "image" : imgUrl,
+                    "address": address,
+                }
+
+                attractions.append(attraction_details)
+            else:
+                continue
+            
+        for i in attractions:
+            i["day"] = 0
+
+        return attractions
+    else:
+        print("Error:", response.status_code)
         return None
 
-def getCityImg(cityName):
-    city_name = cityName
-    opencage_api_key = "5cbe467dfd36484d9b873589b7864a6a"
-    lat, lon = get_lat_long(city_name, opencage_api_key)
-    if lat is not None and lon is not None:
-        return find_city_image(city_name, lat, lon)
+        
+
+
+def getPlaceDataCity(latitude, longitude):
+    return find_tourist_attractions_city(latitude, longitude)
     
 
 
