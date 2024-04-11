@@ -131,7 +131,7 @@ const Account = () => {
                                             <p className="card-text">Days : {plan.totalDays}</p>
                                             <p className='card-text'>Created at {plan.created_at}</p>
                                             <div className='d-flex gap-2 justify-content-center'>
-                                                <Link to='/viewplan' state={{ planId: plan.plan_id, days: plan.totalDays }} className='btn btn-info'>View Plan <i className="bi bi-eye-fill"></i></Link>
+                                                <Link to='/viewplan' state={{ planId: plan.plan_id, days: plan.totalDays, city: plan.plan_city }} className='btn btn-info'>View Plan <i className="bi bi-eye-fill"></i></Link>
                                                 {(!plan.plan_city.includes("SuggestedPlans")) && (
                                                     <button onClick={() => openModal(plan.plan_id)} className='btn btn-info'>Write a Blog</button>
                                                 )}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from "./Header"
+import Map from "./Map"
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -151,93 +152,96 @@ const PlaceData = () => {
                         </div>
                     ) : (
                         <>
-                            <div>
-                            {data && data.length > 0 && [...Array(Math.min(days, maxCount))].map((_, i) => {
-                                const dayNumber = i + 1;
-                                const filteredData = data.filter(place => place.day === dayNumber);
-                                return (
-                                    <div key={dayNumber}>
-                                        <h1 className='h2 fw-bolder fs-1 mt-3'>Day {dayNumber}</h1>
-                                        <div className='row row-col-3'>
-                                            {filteredData.map(place => (
-                                                <div className='col-4 col-sm-12 col-md-6 col-lg-4 mt-2 mb-2' key={place.fsq_id}>
-                                                    <div className="card cardData">
-                                                        <div className="card-header fw-bolder text-white">
-                                                            {place.name}
-                                                        </div>
-                                                        <img src={place.image} className="card-img-top rounded-0" alt={place.name} style={{ height: "25vh" }} />
-                                                        <div className="card-body text-center">
-                                                            <p className="fw-bolder">Category : {place.category}</p>
-                                                            <div className='container bg-primary-subtle mt-1 mb-2 rounded-2 border p-1'>
-                                                                <p className='fw-bolder'>Address : {place.address}</p>
+                            <div><p className='h2 fw-bolder fs-1 mt-3 text-center align-items-center'>{city}</p></div>
+                            <div className='row'>
+                                <div className='col-7 overflow-auto'>
+                                    {data && data.length > 0 && [...Array(Math.min(days, maxCount))].map((_, i) => {
+                                        const dayNumber = i + 1;
+                                        const filteredData = data.filter(place => place.day === dayNumber);
+                                        return (
+                                            <div key={dayNumber}>
+                                                <h1 className='h2 fw-bolder fs-1 mt-3'>Day {dayNumber}</h1>
+                                                <div className='row'>
+                                                    {filteredData.map(place => (
+                                                        <div className='col-6 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2' key={place.fsq_id}>
+                                                            <div className="card cardData">
+                                                                <div className="card-header fw-bolder text-white">
+                                                                    {place.name}
+                                                                </div>
+                                                                <img src={place.image} className="card-img-top rounded-0" alt={place.name} style={{ height: "25vh" }} />
+                                                                <div className="card-body text-center">
+                                                                    <p className="fw-bolder">Category : {place.category}</p>
+                                                                    <div className='container bg-primary-subtle mt-1 mb-2 rounded-2 border p-1'>
+                                                                        <p className='fw-bolder'>Address : {place.address}</p>
+                                                                    </div>
+                                                                    <ul className="list-group">
+                                                                        {place.review.map(review => (
+                                                                            <li className="list-group-item" key={review.id}>
+                                                                                <p>{review.text}</p>
+                                                                            </li>
+                                                                        ))}
+                                                                    </ul>
+                                                                    <div className='container d-flex flex-row gap-1 mt-2 justify-content-center align-items-center'>
+                                                                        {dayNumber > 1 && (
+                                                                            <><button className='btn btn-primary' onClick={() => { updateData(dayNumber - 1, place.fsq_id) }}><i className="bi bi-caret-up-square-fill"></i></button></>
+                                                                        )}
+                                                                        <button className='btn btn-primary' onClick={() => { updateData(dayNumber + 1, place.fsq_id) }}><i className="bi bi-caret-down-square-fill"></i></button>
+                                                                        <button className='btn btn-danger' onClick={() => { deleteData(place.fsq_id) }}>
+                                                                            <i className="bi bi-x-square-fill"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <ul className="list-group">
-                                                                {place.review.map(review => (
-                                                                    <li className="list-group-item" key={review.id}>
-                                                                        <p>{review.text}</p>
-                                                                    </li>
-                                                                ))}
-                                                            </ul>
-                                                            <div className='container d-flex flex-row gap-1 mt-2 justify-content-center align-items-center'>
-                                                                {dayNumber > 1 && (
-                                                                    <><button className='btn btn-primary' onClick={() => { updateData(dayNumber - 1, place.fsq_id) }}><i className="bi bi-caret-up-square-fill"></i></button></>
-                                                                )}
-                                                                <button className='btn btn-primary' onClick={() => { updateData(dayNumber + 1, place.fsq_id) }}><i className="bi bi-caret-down-square-fill"></i></button>
-                                                                <button className='btn btn-danger' onClick={() => { deleteData(place.fsq_id) }}>
-                                                                    <i className="bi bi-x-square-fill"></i>
-                                                                </button>
-                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    ))}
                                                 </div>
-                                            ))}
-                                        </div>
-                                        <hr />
-                                    </div>
-                                );
-                            })}
-                        </div>
-
-                            <div>
-                                <h1 className='h2 fw-bolder fs-1 mt-3'>Additional</h1>
-                                <div className='row row-cols-3'>
-                                    {maxCount > days && data && data.length > 0 && data.map((place) => {
-                                        if (place.day > days) {
-                                            return (
-                                                <div key={place.fsq_id} className="col-4 col-sm-12 col-md-6 col-lg-4 mt-2 mb-2">
-                                                    <div className="card cardData">
-                                                        <div className="card-header fw-bolder text-white">
-                                                            {place.name}
-                                                        </div>
-                                                        <img src={place.image} className="card-img-top rounded-0" alt={place.name} style={{ height: "25vh" }} />
-                                                        <div className="card-body text-center">
-                                                            <p className="fw-bolder">Category : {place.category}</p>
-                                                            <div className='container bg-primary-subtle mt-1 mb-2 rounded-2 border p-1'>
-                                                                <p className='fw-bolder'>Address : {place.address}</p>
-                                                            </div>
-                                                            <ul className="list-group">
-                                                                {place.review.map(review => (
-                                                                    <li className="list-group-item" key={review.id}>
-                                                                        <p>{review.text}</p>
-                                                                    </li>
-                                                                ))}
-                                                            </ul>
-                                                            <div className='container d-flex flex-row gap-1 mt-2 justify-content-center align-items-center'>
-                                                                <button className='btn btn-primary' onClick={() => { updateData(1, place.fsq_id) }}>
-                                                                    <i className="bi bi-caret-up-square-fill"></i>
-                                                                </button>
-                                                                <button className='btn btn-danger' onClick={() => { deleteData(place.fsq_id) }}>
-                                                                    <i className="bi bi-x-square-fill"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            );
-                                        } else {
-                                            return <></>;
-                                        }
+                                                <hr />
+                                            </div>
+                                        );
                                     })}
+                                    <h1 className='h2 fw-bolder fs-1 mt-3'>Additional</h1>
+                                    <div className='row'>
+                                        {maxCount > days && data && data.length > 0 && data.map((place) => {
+                                            if (place.day > days) {
+                                                return (
+                                                    <div key={place.fsq_id} className="col-6 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2">
+                                                        <div className="card cardData">
+                                                            <div className="card-header fw-bolder text-white">
+                                                                {place.name}
+                                                            </div>
+                                                            <img src={place.image} className="card-img-top rounded-0" alt={place.name} style={{ height: "25vh" }} />
+                                                            <div className="card-body text-center">
+                                                                <p className="fw-bolder">Category : {place.category}</p>
+                                                                <div className='container bg-primary-subtle mt-1 mb-2 rounded-2 border p-1'>
+                                                                    <p className='fw-bolder'>Address : {place.address}</p>
+                                                                </div>
+                                                                <ul className="list-group">
+                                                                    {place.review.map(review => (
+                                                                        <li className="list-group-item" key={review.id}>
+                                                                            <p>{review.text}</p>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                                <div className='container d-flex flex-row gap-1 mt-2 justify-content-center align-items-center'>
+                                                                    <button className='btn btn-primary' onClick={() => { updateData(1, place.fsq_id) }}>
+                                                                        <i className="bi bi-caret-up-square-fill"></i>
+                                                                    </button>
+                                                                    <button className='btn btn-danger' onClick={() => { deleteData(place.fsq_id) }}>
+                                                                        <i className="bi bi-x-square-fill"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            } else {
+                                                return <></>;
+                                            }
+                                        })}
+                                        <div className='col-5 border-0' style={{ position: 'fixed', top: '8vh', right: '0', bottom: '0', overflowY: 'auto', borderLeft: '1px solid #ccc' }}>
+                                            <Map data={data} days={days}  />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="d-flex justify-content-center align-items-center mb-5" >
@@ -246,8 +250,6 @@ const PlaceData = () => {
                         </>
                     )}
                 </div>
-                
-
             </div>
         </>
     );    

@@ -20,7 +20,7 @@ router = APIRouter()
 def getNearPlaces(location : schemas.Location, request: Request, db: Session = Depends(get_db)):
     try:
         data  = getPlaceDataCity(location.latitude, location.longitude)
-        return {"data" : data[:3]}
+        return {"data" : data}
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail="Internal Server Error")

@@ -88,7 +88,7 @@ const Blogs = () => {
                     <div className="row">
                         {filteredData.length > 0 && filteredData.map((blog, index) => (
                             <div className="col-lg-4 col-md-4 col-sm-6 mb-4" key={index}>
-                                <Link to="/blogdata" style={{ textDecoration: 'none' }} state={{ planId: blog.plan_id }}>
+                                <Link to="/blogdata" style={{ textDecoration: 'none' }} state={{ planId: blog.plan_id}}>
                                     <div className="card">
                                         {/* Check if images array is not empty */}
                                         {blog.images.length > 0 ? (

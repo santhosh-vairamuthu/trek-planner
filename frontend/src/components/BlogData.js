@@ -81,7 +81,7 @@ const BlogData = () => {
                 <div className="container-fluid mt-3">
                     <div className="container" style={{ position: "relative" }}>
                         <div className="container blogBannerData p-5">
-                        <Link to='/viewplan' state={{ planId: data.plan_id, days: data.totalDays }} className='btn btn-info'>View Plan <i className="bi bi-eye-fill"></i></Link>
+                        <Link to='/viewplan' state={{ planId: data.plan_id, days: data.totalDays, city: data.plan_city  }} className='btn btn-info'>View Plan <i className="bi bi-eye-fill"></i></Link>
                         </div>
                         { data && data.images && data.images.length > 0 ? (
                             <img src={data.images[0]} className="blogBanner rounded-2" alt=""/>

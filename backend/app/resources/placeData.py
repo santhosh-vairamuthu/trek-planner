@@ -101,9 +101,9 @@ places = [
     # Add more places as needed
 ]
 
-@router.get("/places", response_model=List[dict])
-async def get_places():
-    return places
+@router.get("/places")
+async def get_places(request:Request):
+    return {"places" : places}
 
 @router.get("/getPlanData")
 def getPlanData(request: Request, db: Session = Depends(get_db), user: str = Depends(verify_session)):
