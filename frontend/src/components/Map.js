@@ -9,7 +9,6 @@ const markerIcon2 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAA
 const Map = (props) => {
     const [places, setPlaces] = useState(undefined);
     const [days, setDays] = useState(undefined);
-    console.log("hi");
 
     useEffect(() => {
         setPlaces(props.data);

@@ -7,12 +7,10 @@ const Planning = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(null); 
     const [isLoading, setIsLoading] = useState(true);
     const [destination, setDestination] = useState('');
-    const [travelDate, setTravelDate] = useState('');
     const [travelDuration, setTravelDuration] = useState(1);
     // const [activities, setActivities] = useState([]);
     const [selectedPlaces, setSelectedPlaces] = useState([]);
     const [autocompleteOptions, setAutocompleteOptions] = useState([]);
-    const today = new Date().toISOString().split('T')[0];
 
     const category = {
         "Arts and Entertainment": "10000",
@@ -62,16 +60,6 @@ const Planning = () => {
     const handleIncreaseDays = () => {
         setTravelDuration(prevDuration => parseInt(prevDuration, 10) + 1);
     };
-
-    // const handleStartTimeChange = (activityName, startTime) => {
-    //     const updatedActivities = activities.map(activity => {
-    //         if (activity.name === activityName) {
-    //             return { ...activity, startTime };
-    //         }
-    //         return activity;
-    //     });
-    //     setActivities(updatedActivities);
-    // };
 
     const handlePlaceCheckboxChange = (placeName) => {
         if (selectedPlaces.includes(placeName)) {
@@ -140,10 +128,10 @@ const Planning = () => {
                                 )}
                             </div>
                             <hr className='mt-3'/>
-                            <div className="mb-3">
+                            {/* <div className="mb-3">
                                 <label htmlFor="travelDate" className="form-label"><strong>Enter your preferred travel dates:</strong></label>
                                 <input type="date" id="travelDate" className="form-control" value={travelDate} onChange={(e) => setTravelDate(e.target.value)} min={today} />
-                            </div>
+                            </div> */}
                             <div className="mb-3">
                                 <label htmlFor="travelDuration" className="form-label"><strong>Enter the days of your travel:</strong></label>
                                 <div className="input-group">
@@ -152,24 +140,6 @@ const Planning = () => {
                                     <button type="button" className="btn btn-primary custom-btn" onClick={handleIncreaseDays}>+</button>
                                 </div>
                             </div>
-                            {/* <div className="mb-3 mt-3">
-                                <label htmlFor="travelWith" className="form-label"><strong>Enter your travel companions for your next adventure:</strong></label>
-                                <div className="card-group">
-                                    {Object.entries({
-                                        "Backpacker": "&#x1F468; Backpacker",
-                                        "Solo": "&#x1F464; Solo",
-                                        "Couple": "&#x1F46B; Couple",
-                                        "Family": "&#x1F46A; Family",
-                                        "Friends": "&#x1F46B; Friends"
-                                    }).map(([key, value]) => (
-                                        <div key={key} className={`card ${travelWith === key ? 'bg-primary text-white' : ''}`} onClick={() => handleTravelWithClick(key)}>
-                                            <div className="card-body custom-card-body">
-                                                <h5 className="card-title" style={{ fontSize: '12px' }} dangerouslySetInnerHTML={{__html: value}}></h5>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div> */}
                             <div className="mb-3 mt-3">
                                 <label htmlFor="destination" className="form-label"><strong>Select places you would like to visit:</strong></label>
                                 {Object.keys(category).map((key) => (
@@ -179,12 +149,8 @@ const Planning = () => {
                                     </div>
                                 ))}
                             </div>
-                            {/* <div className="mb-3">
-                                <label htmlFor="start-time" className="form-label"><strong>Enter your start time:</strong></label>
-                                <input type="time" className="form-control" id="start-time" onChange={(e) => handleStartTimeChange("Beaches", e.target.value)} />
-                            </div> */}
                             <div className="mb-3 text-center"> 
-                                <Link to='/placedata' state={{ city: destination, days : travelDuration }} className="btn btn-primary custom-submit-btn">Create Plan</Link>
+                                <Link to='/placedata' state={{ city: destination, days : travelDuration, category: Object.keys(category).filter(key => selectedPlaces.includes(key)).map(key => category[key])}} className="btn btn-primary custom-submit-btn">Create Plan</Link>
                             </div>
                         </form>
                     </div>

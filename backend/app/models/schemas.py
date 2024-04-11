@@ -19,7 +19,7 @@ class placeForm(BaseModel):
     destinationCity : str
     startDate : Optional[date] = None
     days : Optional[int] = None
-    type : Optional[list[str]] = None
+    category : Optional[list[str]] = None
     class Config:
         from_attributes = True
         

@@ -16,6 +16,7 @@ const PlaceData = () => {
     const location = useLocation();
     const { city } = location.state || { city: "error" };
     const { days } = location.state || { days: "error" };
+    const { category } = location.state || { category: "error" };
     const [maxCount, setCount] = useState(0);
     const navigate = useNavigate();
 
@@ -77,7 +78,8 @@ const PlaceData = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await api.post("", { destinationCity: city });
+                console.log(category);
+                const response = await api.post("", { destinationCity: city, category: category });
                 setData(response.data.data);
 
             } catch (error) {
@@ -88,7 +90,7 @@ const PlaceData = () => {
         };
 
         fetchData();
-    }, [city]);
+    }, [city, category]);
 
     const updateData = (day, id) => {
         const temp = data.map(item => {
@@ -163,7 +165,7 @@ const PlaceData = () => {
                                                 <h1 className='h2 fw-bolder fs-1 mt-3'>Day {dayNumber}</h1>
                                                 <div className='row'>
                                                     {filteredData.map(place => (
-                                                        <div className='col-6 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2' key={place.fsq_id}>
+                                                        <div className='col-6 col-sm-12 col-md-12 col-lg-6 mt-2 mb-2' key={place.fsq_id}>
                                                             <div className="card cardData">
                                                                 <div className="card-header fw-bolder text-white">
                                                                     {place.name}
@@ -204,7 +206,7 @@ const PlaceData = () => {
                                         {maxCount > days && data && data.length > 0 && data.map((place) => {
                                             if (place.day > days) {
                                                 return (
-                                                    <div key={place.fsq_id} className="col-6 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2">
+                                                    <div key={place.fsq_id} className="col-6 col-sm-12 col-md-12 col-lg-6 mt-2 mb-2">
                                                         <div className="card cardData">
                                                             <div className="card-header fw-bolder text-white">
                                                                 {place.name}
@@ -238,7 +240,7 @@ const PlaceData = () => {
                                                 return <></>;
                                             }
                                         })}
-                                        <div className='col-5 border-0' style={{ position: 'fixed', top: '8vh', right: '0', bottom: '0', overflowY: 'auto', borderLeft: '1px solid #ccc' }}>
+                                        <div className='col-5 border-0 mt-5' style={{ position: 'fixed', top: '8vh', right: '0', bottom: '0', overflowY: 'auto', borderLeft: '1px solid #ccc' }}>
                                             <Map data={data} days={days}  />
                                         </div>
                                     </div>

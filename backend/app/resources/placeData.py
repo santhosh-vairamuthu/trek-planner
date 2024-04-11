@@ -20,7 +20,10 @@ router = APIRouter()
 @router.post("/getPlaceData")
 def signup(placeData:schemas.placeForm , request:Request, db:Session=Depends(get_db),):
     try:
-        data = getPlaceData(placeData.destinationCity)
+        category = placeData.category
+        if len(category) == 0:
+            category = ['10000','16000','12111','10027','16026','16020','16046']
+        data = getPlaceData(placeData.destinationCity, category)
         return JSONResponse({'data': data})
     except Exception as e:
         print(e)
