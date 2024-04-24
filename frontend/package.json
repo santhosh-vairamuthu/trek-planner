@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.7",
     "leaflet": "^1.9.4",
+    "leaflet-routing-machine": "^3.2.12",
     "postcss-lab-function": "^6.0.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -17,7 +18,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.17.0" 
+    "@babel/plugin-proposal-private-property-in-object": "^7.17.0"
   },
   "scripts": {
     "start": "react-scripts start",

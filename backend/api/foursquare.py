@@ -29,7 +29,7 @@ def find_tourist_attractions(lat, lon, category):
 
     headers = {
         "accept": "application/json",
-        "Authorization": "fsq36P4uixz8udlRIt0Y/7hvtgyQZCLqkBkkR+Y1dQcUTYY="
+        "Authorization": "fsq3xQRfKZ1N2SYnocsIHfMBQCmKVALr+CBiB+mTiFRhUR8="
     }
 
     params = {
@@ -50,7 +50,7 @@ def find_tourist_attractions(lat, lon, category):
 
             headersDetail = {
                 "accept": "application/json",
-                "Authorization": "fsq36P4uixz8udlRIt0Y/7hvtgyQZCLqkBkkR+Y1dQcUTYY="
+                "Authorization": "fsq3xQRfKZ1N2SYnocsIHfMBQCmKVALr+CBiB+mTiFRhUR8="
             }
 
 
@@ -58,14 +58,14 @@ def find_tourist_attractions(lat, lon, category):
 
             headersAddress = {
                 "accept": "application/json",
-                "Authorization": "fsq36P4uixz8udlRIt0Y/7hvtgyQZCLqkBkkR+Y1dQcUTYY="
+                "Authorization": "fsq3xQRfKZ1N2SYnocsIHfMBQCmKVALr+CBiB+mTiFRhUR8="
             }
             
             urlPhoto = f"https://api.foursquare.com/v3/places/{result['fsq_id']}/photos"
 
             headersPhoto = {
                 "accept": "application/json",
-                "Authorization": "fsq36P4uixz8udlRIt0Y/7hvtgyQZCLqkBkkR+Y1dQcUTYY="
+                "Authorization": "fsq3xQRfKZ1N2SYnocsIHfMBQCmKVALr+CBiB+mTiFRhUR8="
             }
 
             responseData = requests.get(urlDetail, headers=headersDetail)
@@ -158,7 +158,7 @@ def find_tourist_attractions_city(lat, lon):
 
     headers = {
         "accept": "application/json",
-        "Authorization": "fsq36P4uixz8udlRIt0Y/7hvtgyQZCLqkBkkR+Y1dQcUTYY="
+        "Authorization": "fsq3xQRfKZ1N2SYnocsIHfMBQCmKVALr+CBiB+mTiFRhUR8="
     }
 
     params = {
@@ -179,7 +179,7 @@ def find_tourist_attractions_city(lat, lon):
 
             headersDetail = {
                 "accept": "application/json",
-                "Authorization": "fsq36P4uixz8udlRIt0Y/7hvtgyQZCLqkBkkR+Y1dQcUTYY="
+                "Authorization": "fsq3xQRfKZ1N2SYnocsIHfMBQCmKVALr+CBiB+mTiFRhUR8="
             }
 
 
@@ -187,14 +187,14 @@ def find_tourist_attractions_city(lat, lon):
 
             headersAddress = {
                 "accept": "application/json",
-                "Authorization": "fsq36P4uixz8udlRIt0Y/7hvtgyQZCLqkBkkR+Y1dQcUTYY="
+                "Authorization": "fsq3xQRfKZ1N2SYnocsIHfMBQCmKVALr+CBiB+mTiFRhUR8="
             }
             
             urlPhoto = f"https://api.foursquare.com/v3/places/{result['fsq_id']}/photos"
 
             headersPhoto = {
                 "accept": "application/json",
-                "Authorization": "fsq36P4uixz8udlRIt0Y/7hvtgyQZCLqkBkkR+Y1dQcUTYY="
+                "Authorization": "fsq3xQRfKZ1N2SYnocsIHfMBQCmKVALr+CBiB+mTiFRhUR8="
             }
 
             responseData = requests.get(urlDetail, headers=headersDetail)

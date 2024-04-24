@@ -241,7 +241,7 @@ const PlaceData = () => {
                                             }
                                         })}
                                         <div className='col-5 border-0 mt-5' style={{ position: 'fixed', top: '8vh', right: '0', bottom: '0', overflowY: 'auto', borderLeft: '1px solid #ccc' }}>
-                                            <Map data={data} days={days}  />
+                                            <Map data={data} days={days} flag={12} />
                                         </div>
                                     </div>
                                 </div>

@@ -146,7 +146,7 @@ const Suggestions = () => {
                 <div className="Suggestions container mt-3">
                     <div className="container p-3">
                         <h1 className="fw-bold fs-1">Find nearby trek spots</h1>
-                        <button className="mt-2 locationButton" onClick={getLocation}>Find My Location</button>
+                        <button className="mt-2 locationButton" onClick={getLocation}>Search</button>
                         {dataIsLoading && (
                             <div className="text-center my-4">
                                 <div className="spinner-border text-primary" role="status">
