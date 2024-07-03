@@ -21,6 +21,8 @@ Trek-Planner is a travel itinerary generator that allows users to create, modify
 - **Databases:** MySQL, MongoDB
 - **Mapping:** Leaflet
 
+---
+
 
 ## Getting Started
 
@@ -53,11 +55,6 @@ pip install -r requirements.txt
 
 Edit `backend/api/config.json` to add your OpenCage API key and Foursquare authorization header.
 
-```json
-
-    opencageApiKey: 'YOUR_OPENCAGE_API_KEY',
-    foursquareAuthHeader: 'YOUR_FOURSQUARE_AUTH_HEADER'
-```
 
 ##### Configure MySQL
 
@@ -98,6 +95,8 @@ npm start
 4. Generate your travel plan and modify it as needed.
 5. Save your plan, write blogs, and explore nearby tourist attractions.
 
+---
+
 ## Project Details
 
 ### User Authentication
@@ -124,6 +123,8 @@ Users can write blogs about their travel experiences and read blogs written by o
 
 Using the browser's location feature, the application can find nearby tourist places and allow users to add them to their new or existing plans.
 
+---
+
 ## License
 
 This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
@@ -138,6 +139,3 @@ Feel free to fork this project, make improvements, and submit pull requests. We 
 - Special thanks to all contributors and users.
 
 ---
-
-Feel free to replace placeholders like `YOUR_OPENCAGE_API_KEY`, `YOUR_FOURSQUARE_AUTH_HEADER`, `your_database_name`, etc., with your actual credentials and database details.
-```
