@@ -54,10 +54,9 @@ pip install -r requirements.txt
 Edit `backend/api/config.json` to add your OpenCage API key and Foursquare authorization header.
 
 ```json
-{
+
     opencageApiKey: 'YOUR_OPENCAGE_API_KEY',
     foursquareAuthHeader: 'YOUR_FOURSQUARE_AUTH_HEADER'
-};
 ```
 
 ##### Configure MySQL
@@ -142,5 +141,3 @@ Feel free to fork this project, make improvements, and submit pull requests. We 
 
 Feel free to replace placeholders like `YOUR_OPENCAGE_API_KEY`, `YOUR_FOURSQUARE_AUTH_HEADER`, `your_database_name`, etc., with your actual credentials and database details.
 ```
-
-This `README.md` includes detailed project information and setup instructions without the project structure section and with the second point in the Frontend setup as a markdown code block.
